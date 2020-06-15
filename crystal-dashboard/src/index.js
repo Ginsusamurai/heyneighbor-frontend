@@ -28,7 +28,6 @@ const renderApp = Component => {
 // renderApp(Main);
 renderApp(NeighborMain)
 
-// renderApp(NeighborMain);
 
 if (module.hot) {
   module.hot.accept('./pages/Main', () => {
