@@ -44,11 +44,11 @@ const Main = ({
         <SideBar />
 
         
-        <div className="main-panel">
+        {/* <div className="main-panel">
           <Route exact path="/test">
           <Route path="/components" component={Components} />
           </Route>
-        </div>
+        </div> */}
 
         
         <div className="main-panel">
