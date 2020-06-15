@@ -3,9 +3,9 @@ import cx from 'classnames';
 import uncheckImage from 'assets/images/checkbox-uncheck.svg';
 import checkImage from 'assets/images/checkbox-check.svg';
 
-class Tasks extends Component {
+class myInventory extends Component {
   state = {
-    todos: [
+    rent: [
       {
         id: 1,
         content: 'Sign contract for "What are conference organizers afraid of?"',
@@ -39,18 +39,18 @@ class Tasks extends Component {
     ]
   };
 
-  toggleComplete = todoId => {
+  toggleComplete = rented => {
     this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === todoId) todo.completed = !todo.completed;
-        return todo;
+      rent: this.state.rent.map(itemRented => {
+        if (itemRented.id === rented) itemRented.completed = !itemRented.completed;
+        return itemRented;
       })
     });
   }
 
-  deleteTodo = todoId => {
+  deleteitemRented = rented => {
     this.setState({
-      todos: this.state.todos.filter(todo => todo.id !== todoId)
+      rent: this.state.rent.filter(itemRented => itemRented.id !== rented)
     });
   }
 
@@ -58,26 +58,25 @@ class Tasks extends Component {
     return (
       <div className="card ">
         <div className="header">
-          <h4 className="title">Tasks</h4>
-          <p className="category">Backend development</p>
+          <h4 className="title">Rented Items</h4>
         </div>
         <div className="content">
           <form>
-          {this.state.todos.map(todo => (
-            <div className={cx("todo-item", {completed: todo.completed})} key={todo.id}>
-              <div className="todo-item-wrapper">
+          {this.state.rent.map(itemRented => (
+            <div className={cx("itemRented-item", {completed: itemRented.completed})} key={itemRented.id}>
+              <div className="itemRented-item-wrapper">
               <label className={cx("checkbox", {
-                  checked: todo.completed
+                  checked: itemRented.completed
                 })}
                 >
                   <span className="icons">
                     <img className="first-icon" src={uncheckImage} width={17} />
                     <img className="second-icon" src={checkImage} width={17} />
                   </span>
-                  <input type="checkbox" data-toggle="checkbox" checked={todo.completed} onChange={() => this.toggleComplete(todo.id)} />
+                  <input type="checkbox" data-toggle="checkbox" checked={itemRented.completed} onChange={() => this.toggleComplete(itemRented.id)} />
                 </label>
-                <div className="todo-content">{todo.content}</div>
-                <a onClick={() => this.deleteTodo(todo.id)}>
+                <div className="itemRented-content">{itemRented.content}</div>
+                <a onClick={() => this.deleteitemRented(itemRented.id)}>
                   &times;
                 </a>
               </div>
@@ -98,4 +97,4 @@ class Tasks extends Component {
   }
 }
 
-export default Tasks;
+export default myInventory;
