@@ -9,7 +9,10 @@ const TextInput = ({
   inputClassName,
   placeholder,
   helpText,
-  disabled
+  disabled,
+  min,
+  max,
+  required
 }) => (
   <div>
     <input
@@ -19,6 +22,9 @@ const TextInput = ({
         error: !!error
       })}
       placeholder={placeholder}
+      min={min}
+      max={max}
+      required={required}
       disabled={disabled} />
 
     { touched && error &&

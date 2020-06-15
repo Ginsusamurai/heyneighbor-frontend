@@ -7,6 +7,8 @@ import 'sweetalert/dist/sweetalert.css';
 import Main from './pages/Main';
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
+import NeighborMain from './pages/NeighborMain';
+
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -22,7 +24,10 @@ const renderApp = Component => {
   );
 };
 
-renderApp(Main);
+// NeighborMain ? renderApp(NeighborMain) : renderApp(Main);
+// renderApp(Main);
+renderApp(NeighborMain)
+
 
 if (module.hot) {
   module.hot.accept('./pages/Main', () => {
