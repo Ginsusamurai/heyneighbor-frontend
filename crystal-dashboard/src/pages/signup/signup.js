@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/href-no-hash */
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect, dispatch } from 'react';
 import renderField from 'components/FormInputs/renderField';
+import { getRemoteData } from '../../reducers/signup';
+require('dotenv').config();
+
 
 const validate = values => {
   const errors = {};
@@ -23,10 +27,14 @@ const validate = values => {
   return errors;
 };
 
-const Signup = ({
+
+
+var Signup = ({
   submitting,
   // handleSubmit,
-  submitForm
+  submitForm,
+  props,
+  state
 }) => (
     <div className="card">
       <div className="header">
@@ -113,15 +121,30 @@ function google() {
 
 function handleSubmit(e) {
   e.preventDefault();
-  if (e.target.password !== e.target.password2) {
+  if (e.target.password.value !== e.target.password2.value) {
     alert('Passwords do not match');
     return;
     // throw new Error("Passwords do not match");
   }
-
+  let formData = {
+    email: e.target.email.value,
+    userName: e.target.userName.value,
+    password: e.target.password.value,
+    address: e.target.address.value,
+  }
+  console.log(formData);
+  // props.signup(formData);
 }
 
-export default reduxForm({
-  form: 'Signup',
-  validate
-})(Signup)
+const mapStateToProps = state => ({
+  signup: state.signup,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  signup: (userDetails) => dispatch(getRemoteData(userDetails)),
+})
+
+
+Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
+
+export default reduxForm({ form: 'Signup', validate })(Signup)
