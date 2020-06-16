@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect, dispatch } from 'react';
+import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
-import { getRemoteData } from '../../reducers/signup';
+import { createUser } from '../../reducers/signup';
 require('dotenv').config();
 
 
@@ -28,13 +28,33 @@ const validate = values => {
 
 
 
-var Signup = ({
-  submitting,
-  // handleSubmit,
-  submitForm,
-  props,
-  state
-}) => (
+var Signup = props => {
+  const {submitting,
+    // handleSubmit,
+     submitForm, state} = props;
+  // console.log('signupProps', props);
+   
+  function handleSubmit(e){
+    e.preventDefault();
+    console.log('myPROPS!', props);
+    if(e.target.password.value !== e.target.password2.value){
+      alert('Passwords do not match');
+      return;
+      // throw new Error("Passwords do not match");
+    }
+    let formData = {
+      email:e.target.email.value,
+      userName:e.target.userName.value,
+      password:e.target.password.value,
+      address:e.target.address.value,
+    }
+    // console.log(formData);
+    props.doSignup(formData);
+  }
+
+
+
+  return (
   <div className="card">
     <div className="header">
       <h4>Sign Up</h4>
@@ -92,7 +112,8 @@ var Signup = ({
       <a id="oauth" href="#">Login with Google</a>
     </div>
   </div>
-);
+  )
+};
 
 
 function google(){
@@ -118,32 +139,23 @@ function google(){
   link.setAttribute('href', formattedURL);
 }
 
-function handleSubmit(e){
-  e.preventDefault();
-  if(e.target.password.value !== e.target.password2.value){
-    alert('Passwords do not match');
-    return;
-    // throw new Error("Passwords do not match");
-  }
-  let formData = {
-    email:e.target.email.value,
-    userName:e.target.userName.value,
-    password:e.target.password.value,
-    address:e.target.address.value,
-  }
-  console.log(formData);
-  // props.signup(formData);
-}
+
 
 const mapStateToProps = state => ({
-  signup: state.signup,
+  signupState: state.signup,
+  authState: state.Auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  signup: (userDetails) => dispatch(getRemoteData(userDetails)),
+  doSignup: (userDetails) => dispatch(createUser(userDetails)),
+  
 })
 
 
+// Signup = reduxForm({form: 'Signup',validate})(Signup)
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
-export default reduxForm({form: 'Signup',validate})(Signup)
+
+export default reduxForm({form: 'Signup',validate})(Signup);
+
+// export default reduxForm({form: 'Signup',validate})(Signup);
