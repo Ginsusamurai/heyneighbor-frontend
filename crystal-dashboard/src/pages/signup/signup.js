@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/href-no-hash */
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect, dispatch } from 'react';
+import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
 import { getRemoteData } from '../../reducers/signup';
 require('dotenv').config();
@@ -98,7 +98,6 @@ var Signup = ({
 
 function google() {
   let url = 'https://accounts.google.com/o/oauth2/v2/auth';
-  console.log(process.env.REDIRECT_URI);
 
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
