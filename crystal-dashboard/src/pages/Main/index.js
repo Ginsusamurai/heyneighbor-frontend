@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import cx from 'classnames';
@@ -32,6 +32,9 @@ const Main = ({
       hideMobileMenu();
     }
   });
+
+  
+
   return (
     <div className={cx({
       'nav-open': mobileNavVisibility === true
@@ -40,6 +43,14 @@ const Main = ({
         <div className="close-layer" onClick={hideMobileMenu}></div>
         <SideBar />
 
+        
+        {/* <div className="main-panel">
+          <Route exact path="/test">
+          <Route path="/components" component={Components} />
+          </Route>
+        </div> */}
+
+        
         <div className="main-panel">
           <Header />
           <Route exact path="/" component={Dashboard} />
