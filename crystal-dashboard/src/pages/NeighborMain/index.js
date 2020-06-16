@@ -12,7 +12,7 @@ import Signup from '../signup';
 
 
 const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
-  console.log('props',props);
+  // console.log('props',props);
 
   // const loadItem = (e) => {
   //   e && e.preventDefaul();

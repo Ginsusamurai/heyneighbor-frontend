@@ -9,7 +9,6 @@ import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 import NeighborMain from './pages/NeighborMain';
 
-
 const store = configureStore();
 const rootElement = document.getElementById('root');
 
