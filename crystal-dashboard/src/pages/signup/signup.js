@@ -147,3 +147,4 @@ const mapDispatchToProps = (dispatch) => ({
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
 export default reduxForm({ form: 'Signup', validate })(Signup)
+// make changes
