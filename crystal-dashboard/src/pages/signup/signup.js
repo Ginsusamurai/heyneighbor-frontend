@@ -108,8 +108,7 @@ var Signup = props => {
         <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
       </form>
 
-      <a id="oauth" href="#">Login with Google</a>
-    </div>
+      <a id="oauth" href="#"><button className="btn btn-fill btn-info" onClick={google}>Login with Google</button></a>    </div>
   </div>
   )
 };
@@ -120,11 +119,12 @@ function google() {
 
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
-    redirect_uri: 'http://localhost:3000/oauth',
+    redirect_url:`${process.env.BACKEND_ROOT}/oauth`,
+    // redirect_uri: 'http://localhost:3001/oauth',
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
     include_granted_scopes: 'true',
-    response_type: 'code',
+    response_type: 'code',git a
   }
 
   let qs = Object.keys(query).map((val) => {
