@@ -3,7 +3,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
-import { getRemoteData } from '../../reducers/signup';
+import { createUser } from '../../reducers/signup';
 require('dotenv').config();
 
 
@@ -27,73 +27,92 @@ const validate = values => {
   return errors;
 };
 
+var Signup = props => {
+  const {submitting,
+    // handleSubmit,
+     submitForm, state} = props;
+  // console.log('signupProps', props);
+   
+  function handleSubmit(e){
+    e.preventDefault();
+    console.log('myPROPS!', props);
+    if(e.target.password.value !== e.target.password2.value){
+      alert('Passwords do not match');
+      return;
+      // throw new Error("Passwords do not match");
+    }
+    let formData = {
+      email:e.target.email.value,
+      userName:e.target.userName.value,
+      password:e.target.password.value,
+      address:e.target.address.value,
+    }
+    // console.log(formData);
+    props.doSignup(formData);
+  }
 
 
-var Signup = ({
-  submitting,
-  // handleSubmit,
-  submitForm,
-  props,
-  state
-}) => (
-    <div className="card">
-      <div className="header">
-        <h4>Sign Up</h4>
-      </div>
-      <div className="content">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="control-label">Email</label>
-            <Field
-              name="email"
-              type="email"
-              required="true"
-              component={renderField} />
-          </div>
 
-          <div className="form-group">
-            <label className="control-label">Address</label>
-            <Field
-              name="address"
-              type="text"
-              required="true"
-              component={renderField} />
-          </div>
-
-          <div className="form-group">
-            <label className="control-label">Username</label>
-            <Field
-              name="userName"
-              type="text"
-              required="true"
-              component={renderField} />
-          </div>
-
-          <div className="form-group">
-            <label className="control-label">Password</label>
-            <Field
-              name="password"
-              type="password"
-              required="true"
-              component={renderField} />
-          </div>
-
-          <div className="form-group">
-            <label className="control-label">Confirm Password</label>
-            <Field
-              name="password2"
-              type="password"
-              required="true"
-              component={renderField} />
-          </div>
-
-          <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
-        </form>
-
-        <a id="oauth" href="#"><button className="btn btn-fill btn-info" onClick={google}>Login with Google</button></a>
-      </div>
+  return (
+  <div className="card">
+    <div className="header">
+      <h4>Sign Up</h4>
     </div>
-  );
+    <div className="content">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="control-label">Email</label>
+          <Field
+            name="email"
+            type="email"
+            required="true"
+            component={renderField} />
+        </div>
+
+        <div className="form-group">
+          <label className="control-label">Address</label>
+          <Field
+            name="address"
+            type="text"
+            required="true"
+            component={renderField} />
+        </div>
+
+        <div className="form-group">
+          <label className="control-label">Username</label>
+          <Field
+            name="userName"
+            type="text"
+            required="true"
+            component={renderField} />
+        </div>
+
+        <div className="form-group">
+          <label className="control-label">Password</label>
+          <Field
+            name="password"
+            type="password"
+            required="true"
+            component={renderField} />
+        </div>
+
+        <div className="form-group">
+          <label className="control-label">Confirm Password</label>
+          <Field
+            name="password2"
+            type="password"
+            required="true"
+            component={renderField} />
+        </div>
+
+        <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
+      </form>
+
+      <a id="oauth" href="#">Login with Google</a>
+    </div>
+  </div>
+  )
+};
 
 
 function google() {
@@ -120,30 +139,36 @@ function google() {
 
 function handleSubmit(e) {
   e.preventDefault();
-  if (e.target.password.value !== e.target.password2.value) {
+  if(e.target.password.value !== e.target.password2.value){
     alert('Passwords do not match');
     return;
     // throw new Error("Passwords do not match");
   }
   let formData = {
-    email: e.target.email.value,
-    userName: e.target.userName.value,
-    password: e.target.password.value,
-    address: e.target.address.value,
+    email:e.target.email.value,
+    userName:e.target.userName.value,
+    password:e.target.password.value,
+    address:e.target.address.value,
   }
   console.log(formData);
   // props.signup(formData);
 }
 
 const mapStateToProps = state => ({
-  signup: state.signup,
+  signupState: state.signup,
+  authState: state.Auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  signup: (userDetails) => dispatch(getRemoteData(userDetails)),
+  doSignup: (userDetails) => dispatch(createUser(userDetails)),
+  
 })
 
 
+// Signup = reduxForm({form: 'Signup',validate})(Signup)
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
-export default reduxForm({ form: 'Signup', validate })(Signup)
+
+export default reduxForm({form: 'Signup',validate})(Signup);
+
+// export default reduxForm({form: 'Signup',validate})(Signup);

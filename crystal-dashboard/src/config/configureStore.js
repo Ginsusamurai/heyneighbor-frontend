@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-console.log('reducers', reducers);
+// console.log('reducers', reducers);
 
 export default function configureStore() {
   return createStore(combineReducers({...reducers}),
