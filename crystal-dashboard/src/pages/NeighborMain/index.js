@@ -5,13 +5,15 @@ import { getRemoteData } from '../../reducers/item.js';
 import Review from '../review';
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import cx from 'classnames';
-import SideBar from '../../components/neighborSidebar';
+import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router } from 'react-router-dom';
+import Signup from '../signup';
+import Login from '../login';
 
 
 
 const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
-  console.log('props',props);
+  // console.log('props',props);
 
   // const loadItem = (e) => {
   //   e && e.preventDefaul();
@@ -31,11 +33,13 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
       <div className="container-fluid">
         <div className="wrapper">
           <div className="close-layer" onClick={hideMobileMenu}></div>
-            <SideBar />
+            <NeighborSidebar />
 
             <div className="main-panel">
              <Header />
              <Route path="/review/write" component={Review} />
+             <Route path="/signup" component={Signup}/>
+             <Route path="/loggedin" component={Login} />
             {/* <Route exact path="/" component={Dashboard} />
             <Route path="/components" component={Components} />
             <Route path="/profile" component={UserProfile} />
