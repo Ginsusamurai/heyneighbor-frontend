@@ -27,8 +27,6 @@ const validate = values => {
   return errors;
 };
 
-
-
 var Signup = props => {
   const {submitting,
     // handleSubmit,
@@ -119,7 +117,6 @@ var Signup = props => {
 
 function google() {
   let url = 'https://accounts.google.com/o/oauth2/v2/auth';
-  console.log(process.env.REDIRECT_URI);
 
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
@@ -142,7 +139,6 @@ function google() {
 
 function handleSubmit(e) {
   e.preventDefault();
-
   if(e.target.password.value !== e.target.password2.value){
     alert('Passwords do not match');
     return;

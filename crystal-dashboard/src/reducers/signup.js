@@ -1,5 +1,3 @@
-
-
 require('dotenv').config();
 console.log('dirnname', __dirname, process.cwd());
 console.log(process.env);

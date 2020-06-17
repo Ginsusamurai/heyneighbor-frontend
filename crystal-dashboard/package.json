@@ -2,7 +2,7 @@
   "name": "crystal-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/",
+  "homepage": "https://401d35.github.io/heyneighbor-frontend",
   "dependencies": {
     "animate.css": "^3.5.2",
     "autoprefixer": "7.1.2",
@@ -46,6 +46,7 @@
     "react-bootstrap-sweetalert": "^4.0.0",
     "react-bootstrap-table": "^4.1.0",
     "react-chartist": "^0.13.0",
+    "react-cookies": "^0.1.1",
     "react-dates": "^12.6.0",
     "react-dev-utils": "^4.0.1",
     "react-dom": "^15.6.1",
