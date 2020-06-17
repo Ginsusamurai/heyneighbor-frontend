@@ -30,10 +30,10 @@ class Nav extends Component {
             <div>
               <ul className="nav">
                 <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
-                  <Link to="/components/buttons">My Items</Link>
+                  <Link to="/my-items">My Items</Link>
                 </li>
                 <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Add Item</Link>
+                  <Link to="/add-item">Add Item</Link>
                 </li>
               </ul>
             </div>
@@ -51,14 +51,14 @@ class Nav extends Component {
           <Collapse in={this.state.reviewMenuOpen}>
             <div>
               <ul className="nav">
-                <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
-                  <Link to="/components/buttons">My Reviews</Link>
+                <li className={this.isPathActive('/my-reviews') ? 'active' : null}>
+                  <Link to="/my-reviews">My Reviews</Link>
                 </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Reviews of me</Link>
+                <li className={this.isPathActive('/reviews-of-me') ? 'active' : null}>
+                  <Link to="/reviews-of-me">Reviews of me</Link>
                 </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Reviews of my Items</Link>
+                <li className={this.isPathActive('reviews-of-my-items') ? 'active' : null}>
+                  <Link to="reviews-of-my-items">Reviews of my Items</Link>
                 </li>
               </ul>
             </div>
@@ -76,14 +76,11 @@ class Nav extends Component {
           <Collapse in={this.state.rentalMenuOpen}>
             <div>
               <ul className="nav">
-                <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
-                  <Link to="/components/buttons">My Reviews</Link>
+                <li className={this.isPathActive('/rentals') ? 'active' : null}>
+                  <Link to="/rentals">Open Rentals</Link>
                 </li>
                 <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Reviews of me</Link>
-                </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Reviews of my Items</Link>
+                  <Link to="/components/grid">Archived Rentals</Link>
                 </li>
               </ul>
             </div>
