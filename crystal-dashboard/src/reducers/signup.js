@@ -30,42 +30,13 @@ export const createUser = (formData) => dispatch => {
           .post(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
           .send(formData)
           .then( results => {
+            console.log('ressy', results);
             dispatch(saveToken(results.text))
           })
           .catch(e => {
             alert(e);
             console.log(e);
           });
-  
-  // console.table(formData);
-  // console.log(BACKEND_ROOT, SIGNUP_ENDPOINT);
-  // console.log('GOT REMOTE!');
-  // let token;
-  // superagent
-  //       .post(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
-  //       .send(formData)
-  //       .then(results => {
-  //         console.log(results);
-  //         return results.text;
-  //       })
-  //       .catch(e => 
-  //         console.log('signup reducer', e)
-  //       )
-  // superagent
-  //   .get(`${BACKEND_ROOT}/getMyUser`)
-  //   .set('Authorization', `Bearer ${token}`)
-  //   .then( results => {
-  //     console.log(results)
-  //     dispatch(populateUser(results));
-  //   })
-  //   .catch(e => {
-  //     console.log('populate user', e)
-  //   })
-  
-  // .get(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
-  //   .then(data => {
-  //     dispatch(getAction(data.body.results));
-  //   });
 }
 
 export const saveToken = payload => {

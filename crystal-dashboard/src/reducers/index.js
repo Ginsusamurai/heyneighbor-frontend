@@ -5,6 +5,7 @@ import Layout from './Layout';
 import Auth from './Auth';
 import item from './item';
 import signup from './signup';
+import user from './user'
 
 export default {
   Auth,
@@ -12,5 +13,6 @@ export default {
   Layout,
   item,
   signup,
+  user,
   form: formReducer
 };
