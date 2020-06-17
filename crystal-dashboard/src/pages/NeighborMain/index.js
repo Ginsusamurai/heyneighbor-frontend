@@ -3,15 +3,14 @@ import Header from './Header.js';
 import { connect } from 'react-redux';
 import { getRemoteData } from '../../reducers/item.js';
 import Review from '../review';
+import MyItems from '../Items'
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import cx from 'classnames';
 import NeighborSidebar from '../../components/neighborSidebar';
-import { Route, Router } from 'react-router-dom';
+import { Route, Router, Link, Switch } from 'react-router-dom';
 import Signup from '../signup';
 
-
-
-const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, ...props }) => {
+const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ...props }) => {
   console.log('props', { mobileNavVisibility, hideMobileMenu, history, ...props });
 
   // const loadItem = (e) => {
@@ -36,6 +35,8 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, ...props }
 
             <div className="main-panel">
              <Header />
+
+             <Route path="/my-items" component={MyItems} />
              <Route path="/review/write" component={Review} />
              <Route path="/signup" component={Signup}/>
             {/* <Route exact path="/" component={Dashboard} />
@@ -46,6 +47,7 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, ...props }
             <Route path="/maps" component={MapsPage} />
             <Route path="/charts" component={Charts} />
             <Route path="/calendar" component={Calendar} /> */}
+
             {/* <Footer /> */}
             </div>
           </div>

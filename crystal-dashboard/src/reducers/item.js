@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const superagent = require('superagent');
-const BACKEND_ROOT = process.env.BACKEND_ROOT;
+// const BACKEND_ROOT = process.env.BACKEND_ROOT;
+const BACKEND_ROOT = 'http://localhost:3005';
 console.log('backend', BACKEND_ROOT);
 
 /**
@@ -10,12 +11,12 @@ console.log('backend', BACKEND_ROOT);
  *  item: string
  *  type: string
  *  documentation: string
- *  subCategory: string 
+ *  subCategory: string
  *  description: string
  *  image: string
  *  active: boolean
  *  _custodyId: string
- * 
+ *
  * }
  */
 
@@ -23,7 +24,11 @@ let initialState = {
   isLoading: false,
   selectedItemId: null, // will be a string
   error: null,
-  items: [],
+  items: [
+{type: "outdoor equipment", item: "pressure washer", _id: "0"},
+{type: "outdoor equipment", item: "pressure washer", _id: "1"},
+{type: "outdoor equipment", item: "pressure washer", _id: "2"}
+  ],
 };
 // const initialState = [];
 // initialState.push(anItem);
@@ -35,13 +40,17 @@ export default function reducer(state = initialState, {
 }) {
   switch (type) {
     case "GET ALL ITEMS SUCCESS":
-      state = {
-        ...state
-      };
-      state.items = payload;
-      state.isLoading = false
+
+    // filter out items that already exist
+    // const items = Object.entries([...state.items, ...payload].reduce((itemsAcc, item) => {
+    //   if (!itemsAcc[item._id]) {
+    //     return {...itemsAcc, [item._id]: item }
+    //   } else {
+    //   return itemsAcc
+    // }
+    // }, {}))
       return {
-        state
+        ...state, items: [...state.items, ...payload], isLoading: false
       };
     case "ITEM QUERY FAIL":
       console.log(payload, "Error Message")
@@ -83,7 +92,7 @@ export default function reducer(state = initialState, {
 }
 
 // ACTIONS
-// Alternate way of writing actions 
+// Alternate way of writing actions
 //export const getItem = (itemID) => {
 //  return {
 //    type = "GET ITEM",
@@ -144,11 +153,14 @@ export function getItemAPI() {
   }
 }
 
-export function getUserItemsAPI() {
+export function getUserItemsAPI(ownerId) {
+  console.log('getUserItemsAPI called', `${BACKEND_ROOT}/itemByOwner/${ownerId}`)
   return function (dispatch) {
-    return superagent.get(`${BACKEND_ROOT}/itemByOwner/:OWNERid`).then(data => {
-      console.log(data);
-      dispatch(getAllItemsSuccess(data.body.results))
+    return superagent.get(`${BACKEND_ROOT}/itemByOwner/${ownerId}`)
+      .set({'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsZXg5OSIsImlhdCI6MTU5MjM2MjU5M30.w8idbipJw5P2pKrzZiwE4DI1I08-C-ixqHXEv0MLMyc'})
+      .then(data => {
+        console.log('data from getUsersItems', data.body);
+        dispatch(getAllItemsSuccess(data.body))
     }).catch(err => dispatch(itemQueryFail))
   }
 }
@@ -179,7 +191,7 @@ export function addNewItemAPI() {
      }).catch(err => dispatch(itemQueryFail))
    }
  }
- 
+
 export const getRemoteData = (endpoint) => dispatch => {
   return superagent.get(`${BACKEND_ROOT}/${endpoint}`)
     .then(data => {

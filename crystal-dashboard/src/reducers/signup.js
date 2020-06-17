@@ -36,7 +36,7 @@ export const createUser = (formData) => dispatch => {
             alert(e);
             console.log(e);
           });
-  
+
   // console.table(formData);
   // console.log(BACKEND_ROOT, SIGNUP_ENDPOINT);
   // console.log('GOT REMOTE!');
@@ -48,7 +48,7 @@ export const createUser = (formData) => dispatch => {
   //         console.log(results);
   //         return results.text;
   //       })
-  //       .catch(e => 
+  //       .catch(e =>
   //         console.log('signup reducer', e)
   //       )
   // superagent
@@ -61,7 +61,7 @@ export const createUser = (formData) => dispatch => {
   //   .catch(e => {
   //     console.log('populate user', e)
   //   })
-  
+
   // .get(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
   //   .then(data => {
   //     dispatch(getAction(data.body.results));

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, browserHistory } from 'react-router-dom';
 import './assets/styles/base.scss';
 import 'sweetalert/dist/sweetalert.css';
 import Main from './pages/Main';
@@ -20,6 +20,7 @@ const renderApp = Component => {
       </HashRouter>
     </Provider>,
     rootElement
+
   );
 };
 
