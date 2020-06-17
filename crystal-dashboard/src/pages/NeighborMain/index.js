@@ -9,6 +9,7 @@ import cx from 'classnames';
 import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router, Link, Switch } from 'react-router-dom';
 import Signup from '../signup';
+import Login from '../login';
 
 const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ...props }) => {
   console.log('props', { mobileNavVisibility, hideMobileMenu, history, ...props });
@@ -39,6 +40,7 @@ const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ..
              <Route path="/my-items" component={MyItems} />
              <Route path="/review/write" component={Review} />
              <Route path="/signup" component={Signup}/>
+             <Route path="/loggedin" component={Login} />
             {/* <Route exact path="/" component={Dashboard} />
             <Route path="/components" component={Components} />
             <Route path="/profile" component={UserProfile} />

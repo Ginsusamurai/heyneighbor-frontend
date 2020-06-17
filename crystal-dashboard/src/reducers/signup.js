@@ -30,6 +30,7 @@ export const createUser = (formData) => dispatch => {
           .post(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
           .send(formData)
           .then( results => {
+            console.log('ressy', results);
             dispatch(saveToken(results.text))
           })
           .catch(e => {
