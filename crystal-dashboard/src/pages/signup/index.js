@@ -24,6 +24,8 @@ let Forms = ({match}) => (
 //   signUpAction: () => dispatch(getRemoteData()),
 // })
 
+
 // Forms = connect(mapStateToProps, mapDispatchToProps)(Forms);
+
 
 export default Forms;

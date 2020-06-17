@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable jsx-a11y/href-no-hash */
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
@@ -25,8 +26,6 @@ const validate = values => {
   }
   return errors;
 };
-
-
 
 var Signup = props => {
   const {submitting,
@@ -116,13 +115,12 @@ var Signup = props => {
 };
 
 
-function google(){
+function google() {
   let url = 'https://accounts.google.com/o/oauth2/v2/auth';
 
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
-    // redirect_url:process.env.REDIRECT_URI,
-    redirect_uri: 'http://localhost:3001/oauth',
+    redirect_uri: 'http://localhost:3000/oauth',
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
     include_granted_scopes: 'true',
@@ -139,7 +137,22 @@ function google(){
   link.setAttribute('href', formattedURL);
 }
 
-
+function handleSubmit(e) {
+  e.preventDefault();
+  if(e.target.password.value !== e.target.password2.value){
+    alert('Passwords do not match');
+    return;
+    // throw new Error("Passwords do not match");
+  }
+  let formData = {
+    email:e.target.email.value,
+    userName:e.target.userName.value,
+    password:e.target.password.value,
+    address:e.target.address.value,
+  }
+  console.log(formData);
+  // props.signup(formData);
+}
 
 const mapStateToProps = state => ({
   signupState: state.signup,
