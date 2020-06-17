@@ -4,11 +4,11 @@ import Signup from './signup.js';
 import getRemoteData from '../../reducers/signup';
 import { connect } from 'react-redux';
 
-const Forms = ({match}) => (
+let Forms = ({match}) => (
   <div className="content">
     <div className="container-fluid">
       {/* <Signup  /> */}
-      {console.log('match', match)}
+      {/* {console.log('match', match)} */}
       <Route path={`/signup`} render={props => {
         return <Signup {...props} onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
       }} />      
@@ -23,6 +23,9 @@ const Forms = ({match}) => (
 // const mapDispatchToProps = (dispatch) => ({
 //   signUpAction: () => dispatch(getRemoteData()),
 // })
+
+
+// Forms = connect(mapStateToProps, mapDispatchToProps)(Forms);
 
 
 export default Forms;
