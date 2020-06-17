@@ -9,6 +9,7 @@ import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router } from 'react-router-dom';
 import Signup from '../signup';
 import Login from '../login';
+import LoginForm from '../loginForm';
 
 
 
@@ -24,23 +25,24 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
 
   // loadItem();
 
-  return(
+  return (
     <div className={cx({
       'nav-open': mobileNavVisibility === true
     })}>
 
-    <div className="content">
-      <div className="container-fluid">
-        <div className="wrapper">
-          <div className="close-layer" onClick={hideMobileMenu}></div>
+      <div className="content">
+        <div className="container-fluid">
+          <div className="wrapper">
+            <div className="close-layer" onClick={hideMobileMenu}></div>
             <NeighborSidebar />
 
             <div className="main-panel">
-             <Header />
-             <Route path="/review/write" component={Review} />
-             <Route path="/signup" component={Signup}/>
-             <Route path="/loggedin" component={Login} />
-            {/* <Route exact path="/" component={Dashboard} />
+              <Header />
+              <Route path="/review/write" component={Review} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/loggedin" component={Login} />
+              <Route path="/login" component={LoginForm} />
+              {/* <Route exact path="/" component={Dashboard} />
             <Route path="/components" component={Components} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/forms" component={Forms} />
@@ -48,7 +50,7 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
             <Route path="/maps" component={MapsPage} />
             <Route path="/charts" component={Charts} />
             <Route path="/calendar" component={Calendar} /> */}
-            {/* <Footer /> */}
+              {/* <Footer /> */}
             </div>
           </div>
         </div>

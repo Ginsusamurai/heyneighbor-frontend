@@ -8,10 +8,10 @@ const BACKEND_ROOT = process.env.BACKEND_ROOT;
 const LOGGEDIN_ENDPOINT = process.env.LOGGEDIN_ENDPOINT;
 
 export default function reducer(state = {}, action) {
-  let {type, payload} = action;
+  let { type, payload } = action;
 
 
-  switch(type){
+  switch (type) {
     // case "SAVE TOKEN":{
     //   console.log('user', payload);
     //   let state = {...state};
@@ -32,29 +32,29 @@ export default function reducer(state = {}, action) {
 
 export const loginUser = (token) => dispatch => {
   return superagent
-          .get(`${BACKEND_ROOT}/getMyUser`)
-          .set('Authorization', `Bearer ${token}`)
-          .then( results => {
-            dispatch(saveMyUser(results.text))
-          })
-          .catch(e => {
-            alert(e);
-            console.log(e);
-          });
-  
-  
+    .get(`${BACKEND_ROOT}/getMyUser`)
+    .set('Authorization', `Bearer ${token}`)
+    .then(results => {
+      dispatch(saveMyUser(results.text))
+    })
+    .catch(e => {
+      alert(e);
+      console.log(e);
+    });
+
+
 }
 
 export const saveMyUser = payload => {
   return {
-    type:"SAVE MY USER",
+    type: "SAVE MY USER",
     payload: payload,
   }
 }
 
 export const saveToken = payload => {
   return {
-    type:"SAVE TOKEN",
-    payload:payload,
+    type: "SAVE TOKEN",
+    payload: payload,
   }
 }
