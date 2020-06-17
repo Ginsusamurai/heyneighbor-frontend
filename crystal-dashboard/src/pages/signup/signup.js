@@ -124,7 +124,7 @@ function google() {
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
     include_granted_scopes: 'true',
-    response_type: 'code',git a
+    response_type: 'code',
   }
 
   let qs = Object.keys(query).map((val) => {
