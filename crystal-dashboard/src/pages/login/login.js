@@ -1,6 +1,7 @@
 import React, { useEffect, component } from 'react';
 import {connect} from 'react-redux';
 import cookie from 'react-cookies';
+import { withRouter } from 'react-router-dom';
 import { loginUser, saveMyUser, saveToken } from '../../reducers/user';
 
 const Login = props => {
@@ -33,4 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
