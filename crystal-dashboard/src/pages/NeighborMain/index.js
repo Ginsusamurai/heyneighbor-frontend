@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import Header from './Header.js';
 import { connect } from 'react-redux';
-import { getRemoteData } from '../../reducers/item.js';
+
 import Review from '../review';
-import MyItems from '../Items'
+import MyItems from '../Items/Items'
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import cx from 'classnames';
 import NeighborSidebar from '../../components/neighborSidebar';
@@ -61,13 +61,11 @@ const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ..
 
 
 const mapStateToProps = state => ({
-  items: state.items,
-  item: state.item,
   state: state
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getItems: () => dispatch(getRemoteData('item'))
+  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NeighborMain);

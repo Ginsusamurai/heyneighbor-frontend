@@ -24,10 +24,21 @@ let initialState = {
   isLoading: false,
   selectedItemId: null, // will be a string
   error: null,
-  items: [
-{type: "outdoor equipment", item: "pressure washer", _id: "0"},
-{type: "outdoor equipment", item: "pressure washer", _id: "1"},
-{type: "outdoor equipment", item: "pressure washer", _id: "2"}
+  items: [{
+      type: "outdoor equipment",
+      item: "pressure washer",
+      _id: "0"
+    },
+    {
+      type: "outdoor equipment",
+      item: "pressure washer",
+      _id: "1"
+    },
+    {
+      type: "outdoor equipment",
+      item: "pressure washer",
+      _id: "2"
+    }
   ],
 };
 // const initialState = [];
@@ -41,14 +52,14 @@ export default function reducer(state = initialState, {
   switch (type) {
     case "GET ALL ITEMS SUCCESS":
 
-    // filter out items that already exist
-    // const items = Object.entries([...state.items, ...payload].reduce((itemsAcc, item) => {
-    //   if (!itemsAcc[item._id]) {
-    //     return {...itemsAcc, [item._id]: item }
-    //   } else {
-    //   return itemsAcc
-    // }
-    // }, {}))
+      // filter out items that already exist
+      // const items = Object.entries([...state.items, ...payload].reduce((itemsAcc, item) => {
+      //   if (!itemsAcc[item._id]) {
+      //     return {...itemsAcc, [item._id]: item }
+      //   } else {
+      //   return itemsAcc
+      // }
+      // }, {}))
       return {
         ...state, items: [...state.items, ...payload], isLoading: false
       };
@@ -58,13 +69,9 @@ export default function reducer(state = initialState, {
 
       // Get a specific item with ITEMid
     case "GET ITEM":
-      state = {
-        ...state
-      };
-      state.items = payload;
-      state.isLoading = false
+
       return {
-        state
+        ...state, selectedItemId: payload
       };
       // Get specific items based on OWNERid
     case "GET USER ITEMS":
@@ -114,21 +121,32 @@ export const getItem = (itemID) => ({
   type: "GET ITEM",
   payload: itemID
 });
-export const getItemSuccess = (itemID) => ({
+
+export const getItemSuccess = (item) => ({
   type: "GET ITEM SUCCESS",
-  payload: itemID
+  payload: item
 })
+
 export const getUserItems = (ownerID) => ({
   type: "GET USER ITEMS",
   payload: ownerID
 })
-export const addNewItem = () => ({
+
+export const addNewItem = (newItem) => ({
   type: "ADD NEW ITEM",
-})
-export const updateItem = (itemID) => ({
+  payload: newItem
+});
+
+export const addNewItemSuccess = (newItemFromDb) => ({
+  type: "ADD NEW ITEM SUCCESS",
+  payload: newItemFromDb
+});
+
+export const updateItem = (item) => ({
   type: "UPDATE ITEM",
-  payload: itemID
+  payload: item
 })
+
 export const removeItem = (itemID) => ({
   type: "REMOVE ITEM",
   payload: itemID
@@ -157,11 +175,13 @@ export function getUserItemsAPI(ownerId) {
   console.log('getUserItemsAPI called', `${BACKEND_ROOT}/itemByOwner/${ownerId}`)
   return function (dispatch) {
     return superagent.get(`${BACKEND_ROOT}/itemByOwner/${ownerId}`)
-      .set({'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsZXg5OSIsImlhdCI6MTU5MjM2MjU5M30.w8idbipJw5P2pKrzZiwE4DI1I08-C-ixqHXEv0MLMyc'})
+      .set({
+        'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsZXg5OSIsImlhdCI6MTU5MjM2MjU5M30.w8idbipJw5P2pKrzZiwE4DI1I08-C-ixqHXEv0MLMyc'
+      })
       .then(data => {
         console.log('data from getUsersItems', data.body);
         dispatch(getAllItemsSuccess(data.body))
-    }).catch(err => dispatch(itemQueryFail))
+      }).catch(err => dispatch(itemQueryFail))
   }
 }
 
@@ -174,23 +194,23 @@ export function addNewItemAPI() {
   }
 }
 
- export function updateItemAPI() {
-   return function (dispatch) {
-     return superagent.put(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
-       console.log(data)
-       dispatch(updateItem(data.body.results))
-     }).catch(err => dispatch(itemQueryFail))
-   }
- }
+export function updateItemAPI() {
+  return function (dispatch) {
+    return superagent.put(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
+      console.log(data)
+      dispatch(updateItem(data.body.results))
+    }).catch(err => dispatch(itemQueryFail))
+  }
+}
 
- export function removeItemAPI() {
-   return function (dispatch) {
-     return superagent.delete(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
-       console.log(data)
-       dispatch(removeItem(data.body.results))
-     }).catch(err => dispatch(itemQueryFail))
-   }
- }
+export function removeItemAPI() {
+  return function (dispatch) {
+    return superagent.delete(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
+      console.log(data)
+      dispatch(removeItem(data.body.results))
+    }).catch(err => dispatch(itemQueryFail))
+  }
+}
 
 export const getRemoteData = (endpoint) => dispatch => {
   return superagent.get(`${BACKEND_ROOT}/${endpoint}`)
