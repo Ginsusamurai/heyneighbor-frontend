@@ -10,9 +10,11 @@ import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router, Link, Switch } from 'react-router-dom';
 import Signup from '../signup';
 import Login from '../login';
+import Rentals from '../rentals'
 
-const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ...props }) => {
-  console.log('props', { mobileNavVisibility, hideMobileMenu, history, ...props });
+
+const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
+  // console.log('props',props);
 
   // const loadItem = (e) => {
   //   e && e.preventDefaul();
@@ -41,6 +43,7 @@ const NeighborMain = ({ mobileNavVisibility = false, hideMobileMenu, history, ..
              <Route path="/review/write" component={Review} />
              <Route path="/signup" component={Signup}/>
              <Route path="/loggedin" component={Login} />
+             <Route path="/rentals" component={Rentals} />
             {/* <Route exact path="/" component={Dashboard} />
             <Route path="/components" component={Components} />
             <Route path="/profile" component={UserProfile} />
