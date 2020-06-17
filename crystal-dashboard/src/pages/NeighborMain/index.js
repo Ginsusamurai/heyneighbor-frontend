@@ -10,8 +10,8 @@ import { Route, Router } from 'react-router-dom';
 
 
 
-const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
-  console.log('props',props);
+const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, ...props }) => {
+  console.log('props', { mobileNavVisibility, hideMobileMenu, history, ...props });
 
   // const loadItem = (e) => {
   //   e && e.preventDefaul();
