@@ -4,6 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
 import { createUser } from '../../reducers/signup';
+import { withRouter } from 'react-router-dom';
+
 require('dotenv').config();
 
 
@@ -170,6 +172,6 @@ const mapDispatchToProps = (dispatch) => ({
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
 
-export default reduxForm({form: 'Signup',validate})(Signup);
+export default withRouter(reduxForm({form: 'Signup',validate})(Signup));
 
 // export default reduxForm({form: 'Signup',validate})(Signup);

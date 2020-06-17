@@ -5,7 +5,8 @@ import Layout from './Layout';
 import Auth from './Auth';
 import item from './item';
 import signup from './signup';
-import user from './user'
+import user from './user';
+import rental from './rental';
 
 export default {
   Auth,
@@ -14,5 +15,6 @@ export default {
   item,
   signup,
   user,
+  rental,
   form: formReducer
 };
