@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginUser, saveToken } from '../../reducers/user';
 import { Field, reduxForm } from 'redux-form';
 import renderField from 'components/FormInputs/renderField';
+import cookie from 'react-cookies';
 require('dotenv').config();
 
 const superagent = require('superagent');
@@ -23,6 +24,8 @@ let LoginForm = props => {
         console.log(result.text);
         props.saveTheToken(result.text);
         props.getUser(result.text);
+        cookie.save('token', result.text);
+        cookie.save('test', 'yes');
       })
   }
 
