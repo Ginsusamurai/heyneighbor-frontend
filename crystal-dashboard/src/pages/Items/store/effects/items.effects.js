@@ -67,12 +67,3 @@ export function removeItemAPI() {
     }).catch(err => dispatch(ItemActions.itemQueryFail))
   }
 }
-
-export const getRemoteData = (endpoint) => dispatch => {
-  return superagent.get(`${BACKEND_ROOT}/${endpoint}`)
-    .then(data => {
-      console.log("Needs implimentation");
-      console.log(data);
-      // dispatch(ItemActions.getAction(data.body.results));
-    })
-}
