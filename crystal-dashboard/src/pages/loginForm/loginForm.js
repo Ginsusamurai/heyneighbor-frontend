@@ -21,11 +21,11 @@ let LoginForm = props => {
       .post(`${BACKEND_ROOT}/signin`)
       .set('Authorization', `Basic ${basic}`)
       .then(result => {
-        console.log(result.text);
+        console.log(result);
         props.saveTheToken(result.text);
         props.getUser(result.text);
         cookie.save('token', result.text);
-        cookie.save('test', 'yes');
+        cookie.save('_id', 'hello');
       })
   }
 
