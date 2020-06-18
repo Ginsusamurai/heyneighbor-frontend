@@ -77,10 +77,10 @@ class Nav extends Component {
             <div>
               <ul className="nav">
                 <li className={this.isPathActive('/rentals') ? 'active' : null}>
-                  <Link to="/rentals">Open Rentals</Link>
+                  <Link to="/rentals/loaned">My Loans</Link>
                 </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
-                  <Link to="/components/grid">Archived Rentals</Link>
+                <li className={this.isPathActive('/rentals') ? 'active' : null}>
+                  <Link to="/rentals/borrowed">My Borrows</Link>
                 </li>
               </ul>
             </div>

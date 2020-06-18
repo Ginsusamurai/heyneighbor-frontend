@@ -1,13 +1,15 @@
 import React from 'react';
-import Router from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import OpenRentals from './openRentals.js';
+import OpenBorrowed from './openBorrowed.js';
 // import ArchivedRentals from './archivedRentals.js';
 
 
-let Rentals = props => (
+let Rentals = ({match}) => (
   <div className='content'>
     <div className='container-fluid'>
-      <OpenRentals />
+      <Route path={`${match.url}/loaned`} component={OpenRentals} />
+      <Route path={`${match.url}/borrowed`} component={OpenRentals} />
     </div>
   </div>
 )
