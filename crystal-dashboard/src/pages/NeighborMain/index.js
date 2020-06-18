@@ -43,6 +43,7 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
               <Route path="/signup" component={Signup} />
               <Route path="/loggedin" component={Login} />
               <Route path="/login" component={LoginForm} />
+              <Route path="/rentals" component={Rentals} />
               {/* <Route exact path="/" component={Dashboard} />
 
             <Route path="/components" component={Components} />
