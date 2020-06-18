@@ -3,22 +3,33 @@ import { connect } from 'react-redux';
 import cookie from 'react-cookies';
 import { getLentRentalData, advanceLoanRentalState } from '../../reducers/rental.js';
 import { withRouter } from 'react-router-dom';
+import { saveMyUser } from '../../reducers/user.js';
 
 
 const OpenRentals = props => {
 
   console.log('rentalprops', props);
+
+  useEffect( () => {
+    let user = cookie.load('user', true);
+    console.log('cookie user', user);
+    user && props.saveUser(user);
+  },[props.rental])
+
   useEffect( () => {props.getRentals(props.user._id, props.signup.token)},[props.signup]);
   
+  // useEffect( () => {
+  //   let token = cookie.load('token');
+  //   let user = props.user ? props.user : null;
+    
+    
+  // },[])
 
   return(
     <div>
       Loaned
       Requests
       <ul>
-      {props.rental.loan &&  props.rental.loan.map((val,ind) => {
-        return <li key={ind}>1ish {val.text}</li>
-      })}
       {props.rental.loan && props.rental.loan.filter((val,ind) => {
         console.log(val.status);
         if(val.status === '1-borrowRequest'){
@@ -72,6 +83,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   getRentals: (_id) => dispatch(getLentRentalData(_id)),
   advanceRental: (_id, token, owner) => dispatch(advanceLoanRentalState(_id, token, owner)),
+  saveUser: (payload) => dispatch(saveMyUser(payload)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OpenRentals));

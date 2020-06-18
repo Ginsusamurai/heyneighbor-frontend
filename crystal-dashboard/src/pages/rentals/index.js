@@ -9,7 +9,7 @@ let Rentals = ({match}) => (
   <div className='content'>
     <div className='container-fluid'>
       <Route path={`${match.url}/loaned`} component={OpenRentals} />
-      <Route path={`${match.url}/borrowed`} component={OpenRentals} />
+      <Route path={`${match.url}/borrowed`} component={OpenBorrowed} />
     </div>
   </div>
 )

@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 const OpenBorrowed = props => {
 
   console.log('rentalprops', props);
-  useEffect( () => {props.getRentals(props.user._id, props.signup.token)},[props.signup]);
+  useEffect( () => {props.getBorrowedRentals(props.user._id, props.signup.token)},[props.signup]);
   
 
   return(
@@ -16,10 +16,7 @@ const OpenBorrowed = props => {
       Borrowed
       Requests
       <ul>
-      {props.rental.borrowed.map((val,ind) => {
-        return <li key={ind}>1ish {val.text}</li>
-      })}
-      {props.rental.borrowed.filter((val,ind) => {
+      {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         console.log(val.status);
         if(val.status === '1-borrowRequest'){
           return val;
@@ -30,7 +27,7 @@ const OpenBorrowed = props => {
       </ul>
       Currently Borrowed
       <ul>
-      {props.rental.borrowed.filter((val,ind) => {
+      {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         if(val.status === '2-borrowApproved'){
           return val;
         }
@@ -40,7 +37,7 @@ const OpenBorrowed = props => {
       </ul>
       Returned Offered
       <ul>
-      {props.rental.borrowed.filter((val,ind) => {
+      {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         if(val.status === '3-returnOffer'){
           return val;
         }
@@ -50,7 +47,7 @@ const OpenBorrowed = props => {
       </ul>
       Acknowledged Return
       <ul>
-      {props.rental.borrowed.filter((val,ind) => {
+      {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         if(val.status === '4-returnAck'){
           return val;
         }
@@ -70,7 +67,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getRentals: (_id) => dispatch(getBorrowedRentalData(_id)),
+  getBorrowedRentals: (_id) => dispatch(getBorrowedRentalData(_id)),
   advanceRental: (_id, token, owner) => dispatch(advanceBorrowedRentalState(_id, token, owner)),
 })
 
