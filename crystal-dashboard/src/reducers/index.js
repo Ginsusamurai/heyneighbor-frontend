@@ -1,18 +1,21 @@
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form'
+import {
+  reducer as formReducer
+} from 'redux-form'
 import ThemeOptions from './ThemeOptions';
 import Layout from './Layout';
 import Auth from './Auth';
-import item from './item';
+import ItemReducer from '../pages/Items/store/reducer/items.reducer';
 import signup from './signup';
-import user from './user'
+import user from './user';
+import rental from './rental';
 
 export default {
   Auth,
   ThemeOptions,
   Layout,
-  item,
+  items: ItemReducer,
   signup,
   user,
+  rental,
   form: formReducer
 };
