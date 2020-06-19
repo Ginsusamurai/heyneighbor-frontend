@@ -27,9 +27,9 @@ $default-color:              #888888 !default;
 $default-bg:                 #888888 !default;
 $default-states-color:       #777777 !default;
 
-$primary-color:              #6D71EF !default;
-$primary-bg:                 #6D71EF !default;
-$primary-states-color:       #1D62F0 !default;
+$primary-color:              #444 !default;
+$primary-bg:                 #444 !default;
+$primary-states-color:       #444 !default;
 
 $success-color:              #87CB16 !default;
 $success-bg:                 #87CB16 !default;
@@ -131,7 +131,7 @@ $line-height-lg:              54px !default;
 
 $sidebar-width:               280px;
 $sidebar-color: #fff;
-$sidebar-bg: #6D71EF;
+$sidebar-bg: $primary-color;
 $sidebar-sub-menu-bg: lighten($sidebar-bg, 4%);
 
 $border-radius-top:        10px 10px 0 0 !default;

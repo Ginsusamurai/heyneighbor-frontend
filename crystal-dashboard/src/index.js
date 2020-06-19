@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter, browserHistory } from 'react-router-dom';
 import './assets/styles/base.scss';
 import 'sweetalert/dist/sweetalert.css';
 import Main from './pages/Main';
@@ -15,11 +15,12 @@ const rootElement = document.getElementById('root');
 const renderApp = Component => {
   ReactDOM.render(
     <Provider store={store}>
-      <HashRouter>
+      <BrowserRouter>
         <Component />
-      </HashRouter>
+      </BrowserRouter>
     </Provider>,
     rootElement
+
   );
 };
 

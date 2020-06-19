@@ -4,6 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect, dispatch } from 'react-redux';
 import renderField from 'components/FormInputs/renderField';
 import { createUser } from '../../reducers/signup';
+import { withRouter } from 'react-router-dom';
+
 require('dotenv').config();
 
 
@@ -26,8 +28,6 @@ const validate = values => {
   }
   return errors;
 };
-
-
 
 var Signup = props => {
   const {submitting,
@@ -53,6 +53,7 @@ var Signup = props => {
     props.doSignup(formData);
   }
 
+  
 
 
   return (
@@ -110,8 +111,7 @@ var Signup = props => {
         <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
       </form>
 
-      <a id="oauth" href="#">Login with Google</a>
-    </div>
+      <a id="oauth" href="#"><button className="btn btn-fill btn-info" onClick={google}>Login with Google</button></a>    </div>
   </div>
   )
 };
@@ -119,11 +119,12 @@ var Signup = props => {
 
 function google() {
   let url = 'https://accounts.google.com/o/oauth2/v2/auth';
-  console.log(process.env.REDIRECT_URI);
 
+  console.log(process.env);
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
-    redirect_uri: 'http://localhost:3000/oauth',
+    redirect_uri:`${process.env.BACKEND_ROOT}/oauth`,
+    // redirect_uri: 'http://localhost:3000/oauth',
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
     include_granted_scopes: 'true',
@@ -142,7 +143,6 @@ function google() {
 
 function handleSubmit(e) {
   e.preventDefault();
-
   if(e.target.password.value !== e.target.password2.value){
     alert('Passwords do not match');
     return;
@@ -173,6 +173,6 @@ const mapDispatchToProps = (dispatch) => ({
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
 
-export default reduxForm({form: 'Signup',validate})(Signup);
+export default withRouter(reduxForm({form: 'Signup',validate})(Signup));
 
 // export default reduxForm({form: 'Signup',validate})(Signup);

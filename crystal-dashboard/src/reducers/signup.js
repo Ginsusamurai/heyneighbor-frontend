@@ -1,5 +1,3 @@
-
-
 require('dotenv').config();
 console.log('dirnname', __dirname, process.cwd());
 console.log(process.env);
@@ -32,13 +30,14 @@ export const createUser = (formData) => dispatch => {
           .post(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
           .send(formData)
           .then( results => {
+            console.log('ressy', results);
             dispatch(saveToken(results.text))
           })
           .catch(e => {
             alert(e);
             console.log(e);
           });
-  
+
   // console.table(formData);
   // console.log(BACKEND_ROOT, SIGNUP_ENDPOINT);
   // console.log('GOT REMOTE!');
@@ -50,7 +49,7 @@ export const createUser = (formData) => dispatch => {
   //         console.log(results);
   //         return results.text;
   //       })
-  //       .catch(e => 
+  //       .catch(e =>
   //         console.log('signup reducer', e)
   //       )
   // superagent
@@ -63,7 +62,7 @@ export const createUser = (formData) => dispatch => {
   //   .catch(e => {
   //     console.log('populate user', e)
   //   })
-  
+
   // .get(`${BACKEND_ROOT}/${SIGNUP_ENDPOINT}`)
   //   .then(data => {
   //     dispatch(getAction(data.body.results));
