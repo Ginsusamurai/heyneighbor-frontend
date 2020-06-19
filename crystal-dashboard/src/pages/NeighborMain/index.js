@@ -3,16 +3,16 @@ import Header from './Header.js';
 import { connect } from 'react-redux';
 
 import Review from '../review';
-import MyItems from '../Items/Items'
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import cx from 'classnames';
 import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router, Link, Switch } from 'react-router-dom';
 import Signup from '../signup';
 import Login from '../login';
-
+import Items from '../items2';
 import LoginForm from '../loginForm';
-import Rentals from '../rentals'
+import Rentals from '../rentals';
+import Others from '../othersItems';
 
 const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
   // console.log('props',props);
@@ -44,6 +44,8 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
               <Route path="/loggedin" component={Login} />
               <Route path="/login" component={LoginForm} />
               <Route path="/rentals" component={Rentals} />
+              <Route path="/my-items" component={Items} />
+              <Route path="/others-items" component={Others} />
               {/* <Route exact path="/" component={Dashboard} />
 
             <Route path="/components" component={Components} />
@@ -67,7 +69,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NeighborMain);
