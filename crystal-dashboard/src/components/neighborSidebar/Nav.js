@@ -29,13 +29,13 @@ class Nav extends Component {
           <Collapse in={this.state.itemMenuOpen}>
             <div>
               <ul className="nav">
-                <li id="interesting" className={this.isPathActive('/components/buttons') ? 'active' : null}>
+                <li id="interesting" className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/my-items">My Items</Link>
                 </li>
-                <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
+                <li className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/others-items">Others Items</Link>
                 </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
+                <li className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/add-item">Add Item</Link>
                 </li>
               </ul>

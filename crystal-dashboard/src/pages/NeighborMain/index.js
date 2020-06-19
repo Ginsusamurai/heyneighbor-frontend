@@ -13,6 +13,7 @@ import Items from '../items2';
 import LoginForm from '../loginForm';
 import Rentals from '../rentals';
 import Others from '../othersItems';
+import CreateItem from '../items2/createItems.js';
 
 const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) => {
   // console.log('props',props);
@@ -46,6 +47,7 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
               <Route path="/rentals" component={Rentals} />
               <Route path="/my-items" component={Items} />
               <Route path="/others-items" component={Others} />
+              <Route path="/add-item" component={CreateItem} />
               {/* <Route exact path="/" component={Dashboard} />
 
             <Route path="/components" component={Components} />

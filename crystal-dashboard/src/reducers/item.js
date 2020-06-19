@@ -34,7 +34,9 @@ export default function reducer(state = initialState, {
 }) {
   switch (type) {
     case "GET ALL ITEMS SUCCESS":
-
+      let x = {...state};
+      x.items = {payload};
+      
       // filter out items that already exist
       // const items = Object.entries([...state.items, ...payload].reduce((itemsAcc, item) => {
       //   if (!itemsAcc[item._id]) {
@@ -44,7 +46,7 @@ export default function reducer(state = initialState, {
       // }
       // }, {}))
       return {
-        ...state, items: [...state.items, ...payload], isLoading: false
+        ...state, items: [...payload], isLoading: false
       };
     case "ITEM QUERY FAIL":
       console.log(payload, "Error Message")
@@ -178,9 +180,13 @@ export function getUserItemsAPI(ownerId, token) {
   }
 }
 
-export function addNewItemAPI() {
+export function addNewItemAPI(token,body) {
+  console.log(token, body);
   return function (dispatch) {
-    return superagent.post(`${BACKEND_ROOT}/item`).then(data => {
+    return superagent.post(`${BACKEND_ROOT}/item`)
+    .set({'Authorization': `Bearer ${token}`})
+    .send(body)
+    .then(data => {
       console.log(data);
       dispatch(addNewItem(data.body.results))
     }).catch(err => dispatch(itemQueryFail))

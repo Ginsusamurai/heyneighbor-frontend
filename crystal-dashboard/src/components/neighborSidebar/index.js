@@ -5,6 +5,7 @@ import { Collapse } from 'react-bootstrap';
 import UserInfo from './UserInfo';
 import Nav from './Nav';
 import backgroundImage from 'assets/images/sidebar-5.jpg';
+import backgroundImage2 from '../../assets/images/HeyNeighbor.PNG';
 
 class SideBar extends Component {
 
@@ -23,7 +24,7 @@ class SideBar extends Component {
 
         <div className="brand">
           <a href="http://jslancer.com" className="brand-name">
-            <img src={'http://jslancer.com/wp-content/uploads/2017/04/js-lancer-logo2-1.png'} alt="logo" className="logo" />
+            <img src={backgroundImage2} alt="logo" className="logo" />
           </a>
 
         </div>
