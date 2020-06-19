@@ -31,7 +31,7 @@ const OpenBorrowed = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Picked Up</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary btn-marg-l' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Picked Up</button></h5></li>
       })}
       </ul>
       <h4 className="text-primary">Ropping Off</h4>
@@ -41,7 +41,7 @@ const OpenBorrowed = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Returned</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary btn-marg-l' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Returned</button></h5></li>
       })}
       </ul>
       <h4 className="text-primary">Return To Be Acknowledged</h4>

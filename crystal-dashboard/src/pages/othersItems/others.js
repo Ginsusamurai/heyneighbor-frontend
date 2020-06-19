@@ -27,7 +27,7 @@ let Others = props => {
                           <img src={item.image} alt="tool" />
                           <p>{item.type}<button 
                           visibility={item._custodyId === item._owner ? 'visible' : 'hidden'} 
-                          className="btn btn-fill btn-primary btn-sm"
+                          className="btn btn-fill btn-primary btn-sm btn-marg-l"
                           onClick={() => props.createRental(props.signup.token, props.user._id, item._owner, item._id)}>Request Borrow</button></p>
                         </div>
                       )
