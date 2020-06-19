@@ -40,7 +40,7 @@ const OpenRentals = props => {
         id={request.rental_id} 
         onClick={
           () => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>
-          Approve</button><button className='btn btn-fill btn-danger ' id={request.rental_id} onClick={() => cancelAndGet(request.rental_id, props.signup.token, props.user._id, props)}>Reject</button></h5></li>
+          Approve</button><button className='btn btn-fill btn-danger btn-marg-l' id={request.rental_id} onClick={() => cancelAndGet(request.rental_id, props.signup.token, props.user._id, props)}>Reject</button></h5></li>
       })}
       </ul>
       <h4 className="text-primary">Currently Lent Out</h4>
@@ -70,7 +70,7 @@ const OpenRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Received</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary btn-marg-l' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Received</button></h5></li>
       })}
       </ul>
     </div>
