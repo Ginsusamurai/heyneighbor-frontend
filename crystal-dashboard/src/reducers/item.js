@@ -76,6 +76,16 @@ export default function reducer(state = initialState, {
       return {
         ...state,
       };
+    // case "CREATE RENTAL DOC":{
+    //   console.log('rental doc state', state);
+    //   let state = JSON.parse(JSON.stringify(state));
+    //   state.items = state.items.filter((val,ind) => {
+    //     if(val._id !== payload){
+    //       return val;
+    //     } 
+    //   })
+    //   return state;
+    }
     default:
       return state;
   }

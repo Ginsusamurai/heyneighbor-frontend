@@ -27,7 +27,7 @@ const OpenRentals = props => {
 
   return(
     <div>
-      <h4 className="text-primary">Loaned Requests</h4>
+      <h4 className="text-primary">Loan Requests</h4>
       <ul>
       {props.rental.loan && props.rental.loan.filter((val,ind) => {
         console.log(val.status);
@@ -35,7 +35,7 @@ const OpenRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}<button 
+        return <li key={index}><h5 className='text-info'>{request.text}<button 
         className='btn btn-fill btn-primary' 
         id={request.rental_id} 
         onClick={
@@ -43,24 +43,24 @@ const OpenRentals = props => {
           Approve</button><button className='btn btn-fill btn-danger ' id={request.rental_id} onClick={() => cancelAndGet(request.rental_id, props.signup.token, props.user._id, props)}>Reject</button></h5></li>
       })}
       </ul>
-      <h4 className="text-primary">Currently Borrowed</h4>
+      <h4 className="text-primary">Currently Lent Out</h4>
       <ul>
       {props.rental.loan && props.rental.loan.filter((val,ind) => {
         if(val.status === '2-borrowApproved' && val.openRental === true){
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}</h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}</h5></li>
       })}
       </ul>
-      <h4 className="text-primary">Returned Offered</h4>
+      <h4 className="text-primary">Ready To Return</h4>
       <ul>
       {props.rental.loan && props.rental.loan.filter((val,ind) => {
         if(val.status === '3-returnOffer' && val.openRental === true){
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}</h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}</h5></li>
       })}
       </ul>
       <h4 className="text-primary">Acknowledged Return</h4>
@@ -70,7 +70,7 @@ const OpenRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Received</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Received</button></h5></li>
       })}
       </ul>
     </div>

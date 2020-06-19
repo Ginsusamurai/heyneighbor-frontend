@@ -16,7 +16,7 @@ const ArchivedRentals = props => {
 
   return(
     <div>
-      <h4 className="text-primary">Archived Borrowed Requests</h4>
+      <h4 className="text-primary">Archived Borrow Requests</h4>
       <ul>
       {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         console.log(val);

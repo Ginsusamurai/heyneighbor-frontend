@@ -13,7 +13,7 @@ const OpenBorrowed = props => {
 
   return(
     <div>
-      <h4 className="text-primary">Borrowed Requests</h4>
+      <h4 className="text-primary">Borrow Requests</h4>
       <ul>
       {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         console.log(val.status);
@@ -21,7 +21,7 @@ const OpenBorrowed = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}</h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}</h5></li>
       })}
       </ul>
       <h4 className="text-primary">Currently Borrowed</h4>
@@ -31,27 +31,27 @@ const OpenBorrowed = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Picked Up</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Picked Up</button></h5></li>
       })}
       </ul>
-      <h4 className="text-primary">Returned Offered</h4>
+      <h4 className="text-primary">Ropping Off</h4>
       <ul>
       {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         if(val.status === '3-returnOffer' && val.openRental === true){
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='text-primary'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Returned</button></h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}<button className='btn btn-fill btn-primary' id={request.rental_id} onClick={() => advanceAndGet(request.rental_id, props.signup.token,props.user._id, props)}>Returned</button></h5></li>
       })}
       </ul>
-      <h4 className="text-primary">Acknowledged Return</h4>
+      <h4 className="text-primary">Return To Be Acknowledged</h4>
       <ul>
       {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         if(val.status === '4-returnAck' && val.openRental === true){
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}><h5 className='primary'>{request.text}</h5></li>
+        return <li key={index}><h5 className='text-info'>{request.text}</h5></li>
       })}
       </ul>
     </div>
