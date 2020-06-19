@@ -24,7 +24,7 @@ const ArchivedRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5></h5>{request.text}</li>
+        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5>{request.text}</h5></li>
       })}
       </ul>
       <h4 className="text-primary">Archived Loan Requests</h4>
@@ -35,7 +35,7 @@ const ArchivedRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5></h5>{request.text}</li>
+        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5>{request.text}</h5></li>
       })}
       </ul>
     </div>
