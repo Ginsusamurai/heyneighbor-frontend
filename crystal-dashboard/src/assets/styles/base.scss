@@ -27,8 +27,16 @@ html, body {
   font-size: 14px;
 }
 
+.btn-marg-l {
+  margin: 1% !important;
+}
+
 .places-buttons .btn {
   margin-bottom: 30px;
+}
+
+.container-fluid {
+  padding: 0px !important;
 }
 
 .rbc-calendar {
