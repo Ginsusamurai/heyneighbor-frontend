@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import renderField from 'components/FormInputs/renderField';
 import _ from 'lodash';
 import { addNewItemAPI, getAllItemsSuccess, itemQueryFail } from '../../reducers/item.js';
@@ -132,7 +132,7 @@ var CreateItem = (props) => {
             </div>
           </div>
           <div className="footer text-center">
-            <button type="submit" className="btn btn-info btn-fill">Submit</button>
+            <Link to="/my-items" ><button type="submit" className="btn btn-info btn-fill">Submit</button></Link>
           </div>
         </form>
       </div>
