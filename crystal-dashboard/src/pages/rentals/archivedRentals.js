@@ -16,7 +16,7 @@ const ArchivedRentals = props => {
 
   return(
     <div>
-      Archived Borrowed Requests
+      <h4 className="text-primary">Archived Borrow Requests</h4>
       <ul>
       {props.rental.borrowed && props.rental.borrowed.filter((val,ind) => {
         console.log(val);
@@ -24,10 +24,10 @@ const ArchivedRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}>{request.text}</li>
+        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5></h5>{request.text}</li>
       })}
       </ul>
-      Archived Loan Requests
+      <h4 className="text-primary">Archived Loan Requests</h4>
       <ul>
       {props.rental.loan && props.rental.loan.filter((val,ind) => {
         console.log(val.status);
@@ -35,7 +35,7 @@ const ArchivedRentals = props => {
           return val;
         }
       }).map((request,index) => {  
-        return <li key={index}>{request.text}</li>
+        return <li key={index} className={request.status.charAt(0) === '1' ? "text-danger" : "text-success"}><h5></h5>{request.text}</li>
       })}
       </ul>
     </div>

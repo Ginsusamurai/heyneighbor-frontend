@@ -28,6 +28,9 @@ export default function reducer (state = [{dog:'yes'}], action){
     case "DEACTIVATE RENTAL":{
       return state;
     }
+    case "CREATE RENTAL DOC":{
+      return state;
+    }
     default:
       return state;
   }
@@ -57,6 +60,26 @@ export const endRental = payload => {
   return {
     type: "DEACTIVATE RENTAL",
   }
+}
+
+export const createRental = payload => {
+  return {
+    type: "CREATE RENTAL DOC",
+    payload: payload
+  }
+}
+
+export const rentalCreate = (token, borrower_id, owner_id, item_id) => dispatch => {
+  let body = {'_owner':owner_id, '_borrower':borrower_id, '_item':item_id};
+  console.log(body);
+  return superagent.post(`${BACKEND_ROOT}/rentaldoc`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(body)
+    .then( data => {
+      console.log(data);
+      dispatch(createRental(item_id));
+    })
+
 }
 
 export const deactivateRental = (rental_id, token,owner_id) => dispatch => {
