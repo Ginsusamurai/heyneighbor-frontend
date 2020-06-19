@@ -25,12 +25,15 @@ let Others = props => {
                       return (
                         <div key={item._id}>
                           <h3>{item.item}</h3>
-                          <img src={item.image} alt="tool" />
+                          <img src={item.image} alt="item" class="imageSize"/>
                           <p>{item.type}
-                          <Link to="/rentals/borrowed"><button 
-                          visibility={item._custodyId === item._owner ? 'visible' : 'hidden'} 
-                          className="btn btn-fill btn-primary btn-sm btn-marg-l"
-                          onClick={() => props.createRental(props.signup.token, props.user._id, item._owner, item._id)}>Request Borrow</button>
+                          <Link to="/rentals/borrowed">
+                            <button
+                            visibility={item._custodyId === item._owner ? 'visible' : 'hidden'} 
+                            className="btn btn-fill btn-primary btn-sm btn-marg-l"
+                            onClick={() => props.createRental(props.signup.token, props.user._id, item._owner, item._id)}>
+                            Request Borrow
+                          </button>
                           </Link>
                           </p>
                         </div>

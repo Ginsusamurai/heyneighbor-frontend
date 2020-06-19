@@ -19,6 +19,7 @@ class SideBar extends Component {
     } = this.props;
 
     return (
+      
       <div className="sidebar" data-color={backgroundColor} data-image={backgroundImage2}>
 
         <div className="">

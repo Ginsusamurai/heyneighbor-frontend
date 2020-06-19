@@ -73,19 +73,25 @@ h1 .subtitle{
     color: #9A9A9A;
 }
 .text-primary, .text-primary:hover{
-    color: #1D62F0 !important;
+    color: #444 !important;
 }
 .text-info, .text-info:hover{
-    color: $info-color !important;
+    color: #444 !important;
+    background-color: $info-color !important;
+    border-radius: 5px;
 }
 .text-success, .text-success:hover{
-    color: $success-color !important;
+    color: #444 !important;
+    background-color: $success-color !important;
+    border-radius: 5px;
 }
 .text-warning, .text-warning:hover{
     color: $warning-color !important;
 }
 .text-danger, .text-danger:hover{
-    color: $danger-color !important;
+    color: #444 !important;
+    background-color: $danger-color;
+    border-radius: 5px;
 }
 
 .typo-line {

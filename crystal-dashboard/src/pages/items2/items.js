@@ -23,7 +23,7 @@ let Items = props => {
                   {props.items.items.map((item) =>
                     <div key={item._id}>
                       <h3>{item.item}</h3>
-                      <img src={item.image} alt="tool" />
+                      <img src={item.image} alt="item" class="imageSize"/>
                       <p>{item.type}</p>
                     </div>
                   )}
