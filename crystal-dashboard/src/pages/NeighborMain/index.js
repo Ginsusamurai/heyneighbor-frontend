@@ -10,6 +10,7 @@ import NeighborSidebar from '../../components/neighborSidebar';
 import { Route, Router, Link, Switch } from 'react-router-dom';
 import Signup from '../signup';
 import Login from '../login';
+import Items from '../Items/Items'
 
 import LoginForm from '../loginForm';
 import Rentals from '../rentals'
@@ -43,6 +44,7 @@ const NeighborMain = ({ mobileNavVisibility, hideMobileMenu, history, props }) =
               <Route path="/signup" component={Signup} />
               <Route path="/loggedin" component={Login} />
               <Route path="/login" component={LoginForm} />
+              <Route path="/my-items" component={Items} />
               {/* <Route exact path="/" component={Dashboard} />
 
             <Route path="/components" component={Components} />

@@ -4,7 +4,7 @@ import {
 import ThemeOptions from './ThemeOptions';
 import Layout from './Layout';
 import Auth from './Auth';
-import ItemReducer from '../pages/Items/store/reducer/items.reducer';
+import ItemReducer from './item';
 import signup from './signup';
 import user from './user';
 import rental from './rental';

@@ -1,32 +1,26 @@
-import {
-  ItemActions
-} from "../"
-
+import { ReviewActions } from"../actions/review.actions"
 require('dotenv').config();
-
 const superagent = require('superagent');
-// const BACKEND_ROOT = process.env.BACKEND_ROOT;
-const BACKEND_ROOT = 'http://localhost:3005';
+const BACKEND_ROOT = process.env.BACKEND_ROOT;
+// const BACKEND_ROOT = 'http://localhost:3005';
 
 // Effects
-export function getAllItemsAPI() {
+export function getAllReviewsAPI() {
   return function (dispatch) {
-    return superagent.get(`${BACKEND_ROOT}/item`).then(data => {
+    return superagent.get(`${BACKEND_ROOT}/review`).then(data => {
       console.log(data);
-      dispatch(ItemActions.getAllItemsSuccess(data.body.results))
-    }).catch(err => dispatch(ItemActions.itemQueryFail(err)))
+      dispatch(ReviewActions.getReviewSuccess(data.body.results))
+    }).catch(err => dispatch(ReviewActions.reviewQueryFail(err)))
   }
 }
-
-export function getItemAPI() {
+export function getUserReviewsAPI() {
   return function (dispatch) {
-    return superagent.get(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
+    return superagent.get(`${BACKEND_ROOT}/userReviews/:id`).then(data => {
       console.log(data);
-      dispatch(ItemActions.getItemSuccess(data.body.results))
-    }).catch(err => dispatch(ItemActions.itemQueryFail(err)))
+      dispatch(ReviewActions.getReviewSuccess(data.body.results))
+    }).catch(err => dispatch(ReviewActions.reviewQueryFail(err)))
   }
 }
-
 export function getUserItemsAPI(ownerId) {
   console.log('getUserItemsAPI called', `${BACKEND_ROOT}/itemByOwner/${ownerId}`)
   return function (dispatch) {
@@ -36,8 +30,8 @@ export function getUserItemsAPI(ownerId) {
       })
       .then(data => {
         console.log('data from getUsersItems', data.body);
-        dispatch(ItemActions.getAllItemsSuccess(data.body))
-      }).catch(err => dispatch(ItemActions.itemQueryFail))
+        dispatch(ReviewActions.getAllItemsSuccess(data.body))
+      }).catch(err => dispatch(ReviewActions.itemQueryFail))
   }
 }
 
@@ -45,8 +39,8 @@ export function addNewItemAPI() {
   return function (dispatch) {
     return superagent.post(`${BACKEND_ROOT}/item`).then(data => {
       console.log(data);
-      dispatch(ItemActions.addNewItem(data.body.results))
-    }).catch(err => dispatch(ItemActions.itemQueryFail))
+      dispatch(ReviewActions.addNewItem(data.body.results))
+    }).catch(err => dispatch(ReviewActions.itemQueryFail))
   }
 }
 
@@ -54,8 +48,8 @@ export function updateItemAPI() {
   return function (dispatch) {
     return superagent.put(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
       console.log(data)
-      dispatch(ItemActions.updateItem(data.body.results))
-    }).catch(err => dispatch(ItemActions.itemQueryFail))
+      dispatch(ReviewActions.updateItem(data.body.results))
+    }).catch(err => dispatch(ReviewActions.itemQueryFail))
   }
 }
 
@@ -63,7 +57,7 @@ export function removeItemAPI() {
   return function (dispatch) {
     return superagent.delete(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
       console.log(data)
-      dispatch(ItemActions.removeItem(data.body.results))
-    }).catch(err => dispatch(ItemActions.itemQueryFail))
+      dispatch(ReviewActions.removeItem(data.body.results))
+    }).catch(err => dispatch(ReviewActions.itemQueryFail))
   }
 }

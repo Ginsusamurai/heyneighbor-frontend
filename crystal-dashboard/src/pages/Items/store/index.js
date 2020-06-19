@@ -1,12 +1,8 @@
-import * as ItemActions from "./actions/items.actions";
-import * as ItemApiActions from "./effects/items.effects";
+import { ItemActions, ItemApiActions } from "../../../reducers/item";
 
 export const selectAllItems = (itemsState) => itemsState.items;
-
 export const selectIsLoading = (itemsState) => itemsState.isLoading;
-
 export const selectItemError = (itemsState) => itemsState.error;
-
 // Selector when items is an array
 export const selectItemInArray = (itemsState) => itemsState.items.find(item => item._id === itemsState.selectedItemId);
 

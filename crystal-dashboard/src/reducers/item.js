@@ -1,103 +1,57 @@
 require('dotenv').config();
-
 const superagent = require('superagent');
-// const BACKEND_ROOT = process.env.BACKEND_ROOT;
-const BACKEND_ROOT = 'http://localhost:3005';
-console.log('backend', BACKEND_ROOT);
+const BACKEND_ROOT = process.env.BACKEND_ROOT;
+// const BACKEND_ROOT = 'http://localhost:3005';
 
-/**
- * interface Tool {
- *  _owner: string
- *  item: string
- *  type: string
- *  documentation: string
- *  subCategory: string
- *  description: string
- *  image: string
- *  active: boolean
- *  _custodyId: string
- *
- * }
- */
-
-let initialState = {
+const initialState = {
   isLoading: false,
   selectedItemId: null, // will be a string
   error: null,
-  items: [{
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "0"
-    },
-    {
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "1"
-    },
-    {
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "2"
-    }
-  ],
+  items: []
 };
-// const initialState = [];
-// initialState.push(anItem);
-
 
 export default function reducer(state = initialState, {
   type,
   payload
 }) {
   switch (type) {
-    case "GET ALL ITEMS SUCCESS":
+      case "GET ALL ITEMS SUCCESS":
+          return {
+              ...state, items: [...payload], isLoading: false
+          };
+      case "ITEM QUERY FAIL":
+          console.log(payload, "Error Message")
+          return state;
 
-      // filter out items that already exist
-      // const items = Object.entries([...state.items, ...payload].reduce((itemsAcc, item) => {
-      //   if (!itemsAcc[item._id]) {
-      //     return {...itemsAcc, [item._id]: item }
-      //   } else {
-      //   return itemsAcc
-      // }
-      // }, {}))
-      return {
-        ...state, items: [...state.items, ...payload], isLoading: false
-      };
-    case "ITEM QUERY FAIL":
-      console.log(payload, "Error Message")
-      return state;
-
-      // Get a specific item with ITEMid
-    case "GET ITEM":
-
-      return {
-        ...state, selectedItemId: payload
-      };
-      // Get specific items based on OWNERid
-    case "GET USER ITEMS":
-      return {
-        ...state,
-      };
-      // Create a new item
-    case "ADD NEW ITEM":
-      return {
-        ...state,
-      };
-      // Update an item by ID
-    case "UPDATE ITEM":
-      return {
-        ...state,
-      };
-      // remove an item by ID
-    case "REMOVE ITEM":
-      return {
-        ...state,
-      };
-    default:
-      return state;
+          // Get a specific item with ITEMid
+      case "GET ITEM":
+          return {
+              ...state, selectedItemId: payload
+          }
+          // Get specific items based on OWNERid
+          case "GET USER ITEMS":
+              return {
+                  ...state,
+              };
+              // Create a new item
+          case "ADD NEW ITEM":
+              return {
+                  ...state,
+              };
+              // Update an item
+          case "UPDATE ITEM":
+              return {
+                  ...state,
+              };
+              // remove an item by ID
+          case "REMOVE ITEM":
+              return {
+                  ...state,
+              };
+          default:
+              return state;
   }
 }
-
 // ACTIONS
 // Alternate way of writing actions
 //export const getItem = (itemID) => {
@@ -108,15 +62,15 @@ export default function reducer(state = initialState, {
 //}
 export const getAllItems = () => ({
   type: "GET ALL ITEMS",
-})
+});
 export const getAllItemsSuccess = (items) => ({
   type: "GET ALL ITEMS SUCCESS",
   payload: items
-})
+});
 export const itemQueryFail = (error) => ({
   type: "ITEM QUERY FAIL",
   payload: error
-})
+});
 export const getItem = (itemID) => ({
   type: "GET ITEM",
   payload: itemID
@@ -125,12 +79,12 @@ export const getItem = (itemID) => ({
 export const getItemSuccess = (item) => ({
   type: "GET ITEM SUCCESS",
   payload: item
-})
+});
 
 export const getUserItems = (ownerID) => ({
   type: "GET USER ITEMS",
   payload: ownerID
-})
+});
 
 export const addNewItem = (newItem) => ({
   type: "ADD NEW ITEM",
@@ -145,12 +99,13 @@ export const addNewItemSuccess = (newItemFromDb) => ({
 export const updateItem = (item) => ({
   type: "UPDATE ITEM",
   payload: item
-})
+});
 
 export const removeItem = (itemID) => ({
   type: "REMOVE ITEM",
   payload: itemID
-})
+});
+
 
 // Effects
 export function getAllItemsAPI() {
@@ -211,19 +166,3 @@ export function removeItemAPI() {
     }).catch(err => dispatch(itemQueryFail))
   }
 }
-
-export const getRemoteData = (endpoint) => dispatch => {
-  return superagent.get(`${BACKEND_ROOT}/${endpoint}`)
-    .then(data => {
-      console.log("Needs implimentation");
-      console.log(data);
-      // dispatch(getAction(data.body.results));
-    })
-}
-
-
-// REDUX:
-// ACTIONS
-// EFFECTS
-// REDUCERS
-// SELECTORS
