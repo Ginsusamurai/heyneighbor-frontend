@@ -1,7 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 import renderField from 'components/FormInputs/renderField';
 import _ from 'lodash';
+import { addNewItemAPI, getAllItemsSuccess, itemQueryFail } from '../../reducers/item.js';
+const superagent = require('superagent');
+require('dotenv').config();
+
 const validate = values => {
   const errors = {};
   if (!values.required) {
@@ -21,16 +27,14 @@ const validate = values => {
   }
   return errors;
 }
-const handleSubmit = (e) => {
-  console.log(e);
-}
+
 const onSubmit = (e) => {
   console.log(e);
 }
 export function getOwnerID (ownerId) {
-  console.log('OwnerID ************', `${BACKEND_ROOT}/${ownerId}`)
+  console.log('OwnerID ************', `${process.env.BACKEND_ROOT}/${ownerId}`)
   return function (dispatch) {
-    return superagent.post(`${BACKEND_ROOT}/user/:id${ownerId}`)
+    return superagent.post(`${process.env.BACKEND_ROOT}/user/:id${ownerId}`)
       .set({
         'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsZXg5OSIsImlhdCI6MTU5MjM2MjU5M30.w8idbipJw5P2pKrzZiwE4DI1I08-C-ixqHXEv0MLMyc'
       })
@@ -40,8 +44,28 @@ export function getOwnerID (ownerId) {
       }).catch(err => dispatch(itemQueryFail))
   }
 }
-const ValidationForm = ({ handleSubmit, onSubmit }) => (
-  <div className="row">
+var CreateItem = (props) => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('itemCreateProps', props);
+
+    let body = {};
+    body._owner = props.user._id;
+    body.item = e.target.item.value;
+    body.type =e.target.type.value;
+    body.documentation = e.target.documentation.value;
+    body.subCategory = e.target.subCategory.value;
+    body.description = e.target.description.value;
+    body.image = e.target.image.value;
+    console.log(props.signup.token, body);
+
+    props.createItem(props.signup.token, body);
+    
+  }
+
+  return (
+    <div className="row">
     <div className="col-md-12">
       <div className="card">
         <div className="header"><h4>New Item</h4></div>
@@ -73,7 +97,7 @@ const ValidationForm = ({ handleSubmit, onSubmit }) => (
                 <Field
                   type="text"
                   name="documentation"
-                  required="false"
+                  
                   component={renderField} />
               </div>
             </div>
@@ -103,7 +127,6 @@ const ValidationForm = ({ handleSubmit, onSubmit }) => (
                 <Field
                   type="text"
                   name="image"
-                  required="false"
                   component={renderField} />
               </div>
             </div>
@@ -115,5 +138,18 @@ const ValidationForm = ({ handleSubmit, onSubmit }) => (
       </div>
     </div>
   </div>
-);
-export default reduxForm({form: 'validationForm', validate})(ValidationForm);
+  )
+};
+
+const mapStateToProps = state => ({
+  signup: state.signup,
+  user: state.user,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  createItem: (token, body) => dispatch(addNewItemAPI(token, body))
+})
+
+CreateItem = connect(mapStateToProps, mapDispatchToProps)(CreateItem);
+
+export default withRouter(reduxForm({form: 'CreateItem', validate})(CreateItem));
