@@ -2,7 +2,7 @@
   "name": "crystal-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://401d35.github.io/heyneighbor-frontend",
+  "homepage": "https://401d35.github.io",
   "dependencies": {
     "animate.css": "^3.5.2",
     "autoprefixer": "7.1.2",

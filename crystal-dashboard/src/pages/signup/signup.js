@@ -53,7 +53,7 @@ var Signup = props => {
     props.doSignup(formData);
   }
 
-  
+
 
 
   return (
@@ -124,7 +124,6 @@ function google() {
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
     redirect_uri: `${process.env.BACKEND_ROOT}/oauth`,
-    // redirect_uri: 'http://localhost:3000/oauth',
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
     include_granted_scopes: 'true',
