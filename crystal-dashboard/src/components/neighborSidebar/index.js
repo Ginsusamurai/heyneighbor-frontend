@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Collapse } from 'react-bootstrap';
 import UserInfo from './UserInfo';
 import Nav from './Nav';
-import backgroundImage from 'assets/images/sidebar-5.jpg';
+import backgroundImage2 from '../../../src/assets/images/HeyNeighbor.PNG';
+
 
 class SideBar extends Component {
 
@@ -22,10 +23,7 @@ class SideBar extends Component {
       <div className="sidebar" data-color={backgroundColor} data-image={backgroundImage}>
 
         <div className="brand">
-          <a href="http://jslancer.com" className="brand-name">
-            <img src={'http://jslancer.com/wp-content/uploads/2017/04/js-lancer-logo2-1.png'} alt="logo" className="logo" />
-          </a>
-
+            <img src={'http://raw.githubusercontent.com/bnates/cool-react/master/HeyNeighbor.PNG'} alt="logo" className="logo" />       
         </div>
 
         <div className="sidebar-wrapper">
