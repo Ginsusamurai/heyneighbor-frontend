@@ -88,10 +88,12 @@ html, body {
 .react-bs-table {
   .table {
     margin-bottom: 0;
+    
   }
 }
 
-#imageSize {
-  height: 200px;
-  width: 200px;
+.imageSize {
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
 }
