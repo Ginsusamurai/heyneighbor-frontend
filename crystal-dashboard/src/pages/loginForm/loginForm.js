@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, saveToken } from '../../reducers/user';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import renderField from 'components/FormInputs/renderField';
 import cookie from 'react-cookies';
 require('dotenv').config();
@@ -57,12 +58,13 @@ let LoginForm = props => {
               component={renderField} />
           </div>
 
-          <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Log in</button>
+          <button type="submit" className="btn btn-social btn-fill btn-google btn-marg-l" disabled={submitting}>Log in</button>
         </form>
       </div>
     </div>
   )
 }
+
 
 const mapStateToProps = state => ({
   user: state.user,

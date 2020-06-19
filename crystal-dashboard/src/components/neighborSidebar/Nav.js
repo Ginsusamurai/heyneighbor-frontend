@@ -12,10 +12,10 @@ class Nav extends Component {
     return (
       <ul className="nav">
         <li className={location.pathname === '/' ? 'active' : null}>
-          <Link to="/">
+          {/* <Link to="/">
             <i className="pe-7s-graph"></i>
-            <p>Dashboard</p>
-          </Link>
+            {/* <p>Dashboard</p> */}
+           
         </li>
         <li className={this.isPathActive('/items') || this.state.itemMenuOpen ? 'active' : null}>
           <a onClick={() => this.setState({ itemMenuOpen: !this.state.itemMenuOpen })}
@@ -29,13 +29,13 @@ class Nav extends Component {
           <Collapse in={this.state.itemMenuOpen}>
             <div>
               <ul className="nav">
-                <li id="interesting" className={this.isPathActive('/components/buttons') ? 'active' : null}>
+                <li id="interesting" className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/my-items">My Items</Link>
                 </li>
-                <li className={this.isPathActive('/components/buttons') ? 'active' : null}>
+                <li className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/others-items">Others Items</Link>
                 </li>
-                <li className={this.isPathActive('/components/grid') ? 'active' : null}>
+                <li className={this.isPathActive('/items') ? 'active' : null}>
                   <Link to="/add-item">Add Item</Link>
                 </li>
               </ul>
