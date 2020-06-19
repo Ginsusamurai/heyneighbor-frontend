@@ -24,7 +24,7 @@ let Others = props => {
                       return (
                         <div key={item._id}>
                           <h3>{item.item}</h3>
-                          <img src={item.image} alt="tool" />
+                          <img src={item.image} alt="item" class="imageSize"/>
                           <p>{item.type}<button 
                           visibility={item._custodyId === item._owner ? 'visible' : 'hidden'} 
                           className="btn btn-fill btn-primary btn-sm btn-marg-l"
