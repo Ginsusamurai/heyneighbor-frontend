@@ -1,9 +1,7 @@
 require('dotenv').config();
 
 const superagent = require('superagent');
-// const BACKEND_ROOT = process.env.BACKEND_ROOT;
-const BACKEND_ROOT = 'http://localhost:3005';
-console.log('backend', BACKEND_ROOT);
+const BACKEND_ROOT = process.env.BACKEND_ROOT;
 
 /**
  * interface Tool {
@@ -24,22 +22,7 @@ let initialState = {
   isLoading: false,
   selectedItemId: null, // will be a string
   error: null,
-  items: [{
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "0"
-    },
-    {
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "1"
-    },
-    {
-      type: "outdoor equipment",
-      item: "pressure washer",
-      _id: "2"
-    }
-  ],
+  items: [],
 };
 // const initialState = [];
 // initialState.push(anItem);
@@ -67,32 +50,42 @@ export default function reducer(state = initialState, {
       console.log(payload, "Error Message")
       return state;
 
-      // Get a specific item with ITEMid
+    // Get a specific item with ITEMid
     case "GET ITEM":
 
       return {
         ...state, selectedItemId: payload
       };
-      // Get specific items based on OWNERid
+    // Get specific items based on OWNERid
     case "GET USER ITEMS":
       return {
         ...state,
       };
-      // Create a new item
+    // Create a new item
     case "ADD NEW ITEM":
       return {
         ...state,
       };
-      // Update an item by ID
+    // Update an item by ID
     case "UPDATE ITEM":
       return {
         ...state,
       };
-      // remove an item by ID
+    // remove an item by ID
     case "REMOVE ITEM":
       return {
         ...state,
       };
+    // case "CREATE RENTAL DOC":{
+    //   console.log('rental doc state', state);
+    //   let state = JSON.parse(JSON.stringify(state));
+    //   state.items = state.items.filter((val,ind) => {
+    //     if(val._id !== payload){
+    //       return val;
+    //     } 
+    //   })
+    //   return state;
+    }
     default:
       return state;
   }
@@ -156,8 +149,8 @@ export const removeItem = (itemID) => ({
 export function getAllItemsAPI() {
   return function (dispatch) {
     return superagent.get(`${BACKEND_ROOT}/item`).then(data => {
-      console.log(data);
-      dispatch(getAllItemsSuccess(data.body.results))
+      console.log('-----data.body----', data.body);
+      dispatch(getAllItemsSuccess(data.body))
     }).catch(err => dispatch(itemQueryFail(err)))
   }
 }
@@ -165,22 +158,22 @@ export function getAllItemsAPI() {
 export function getItemAPI() {
   return function (dispatch) {
     return superagent.get(`${BACKEND_ROOT}/item/:ITEMid`).then(data => {
-      console.log(data);
+      // console.log('-----data-----', data.body);
       dispatch(getItemSuccess(data.body.results))
     }).catch(err => dispatch(itemQueryFail(err)))
   }
 }
 
-export function getUserItemsAPI(ownerId) {
+export function getUserItemsAPI(ownerId, token) {
   console.log('getUserItemsAPI called', `${BACKEND_ROOT}/itemByOwner/${ownerId}`)
   return function (dispatch) {
     return superagent.get(`${BACKEND_ROOT}/itemByOwner/${ownerId}`)
       .set({
-        'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsZXg5OSIsImlhdCI6MTU5MjM2MjU5M30.w8idbipJw5P2pKrzZiwE4DI1I08-C-ixqHXEv0MLMyc'
+        'Authorization': `Bearer ${token}`
       })
       .then(data => {
         console.log('data from getUsersItems', data.body);
-        dispatch(getAllItemsSuccess(data.body))
+        dispatch(getAllItemsSuccess(data.body));
       }).catch(err => dispatch(itemQueryFail))
   }
 }
