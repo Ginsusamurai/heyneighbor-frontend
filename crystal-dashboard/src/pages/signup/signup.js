@@ -30,24 +30,24 @@ const validate = values => {
 };
 
 var Signup = props => {
-  const {submitting,
+  const { submitting,
     // handleSubmit,
-     submitForm, state} = props;
+    submitForm, state } = props;
   // console.log('signupProps', props);
-   
-  function handleSubmit(e){
+
+  function handleSubmit(e) {
     e.preventDefault();
     console.log('myPROPS!', props);
-    if(e.target.password.value !== e.target.password2.value){
+    if (e.target.password.value !== e.target.password2.value) {
       alert('Passwords do not match');
       return;
       // throw new Error("Passwords do not match");
     }
     let formData = {
-      email:e.target.email.value,
-      userName:e.target.userName.value,
-      password:e.target.password.value,
-      address:e.target.address.value,
+      email: e.target.email.value,
+      userName: e.target.userName.value,
+      password: e.target.password.value,
+      address: e.target.address.value,
     }
     // console.log(formData);
     props.doSignup(formData);
@@ -56,62 +56,62 @@ var Signup = props => {
 
 
   return (
-  <div className="card">
-    <div className="header">
-      <h4>Sign Up</h4>
+    <div className="card">
+      <div className="header">
+        <h4>Sign Up</h4>
+      </div>
+      <div className="content">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="control-label">Email</label>
+            <Field
+              name="email"
+              type="email"
+              required="true"
+              component={renderField} />
+          </div>
+
+          <div className="form-group">
+            <label className="control-label">Address</label>
+            <Field
+              name="address"
+              type="text"
+              required="true"
+              component={renderField} />
+          </div>
+
+          <div className="form-group">
+            <label className="control-label">Username</label>
+            <Field
+              name="userName"
+              type="text"
+              required="true"
+              component={renderField} />
+          </div>
+
+          <div className="form-group">
+            <label className="control-label">Password</label>
+            <Field
+              name="password"
+              type="password"
+              required="true"
+              component={renderField} />
+          </div>
+
+          <div className="form-group">
+            <label className="control-label">Confirm Password</label>
+            <Field
+              name="password2"
+              type="password"
+              required="true"
+              component={renderField} />
+          </div>
+
+          <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
+        </form>
+
+        <a id="oauth" href="#"><button className="btn btn-fill btn-info" onClick={google}>Login with Google</button></a>    </div>
     </div>
-    <div className="content">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="control-label">Email</label>
-          <Field
-            name="email"
-            type="email"
-            required="true"
-            component={renderField} />
-        </div>
-
-        <div className="form-group">
-          <label className="control-label">Address</label>
-          <Field
-            name="address"
-            type="text"
-            required="true"
-            component={renderField} />
-        </div>
-
-        <div className="form-group">
-          <label className="control-label">Username</label>
-          <Field
-            name="userName"
-            type="text"
-            required="true"
-            component={renderField} />
-        </div>
-
-        <div className="form-group">
-          <label className="control-label">Password</label>
-          <Field
-            name="password"
-            type="password"
-            required="true"
-            component={renderField} />
-        </div>
-
-        <div className="form-group">
-          <label className="control-label">Confirm Password</label>
-          <Field
-            name="password2"
-            type="password"
-            required="true"
-            component={renderField} />
-        </div>
-
-        <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Submit</button>
-      </form>
-
-      <a id="oauth" href="#"><button className="btn btn-fill btn-info" onClick={google}>Login with Google</button></a>    </div>
-  </div>
   )
 };
 
@@ -122,7 +122,7 @@ function google() {
   console.log(process.env);
   let query = {
     client_id: '444667393820-6rpjjjaepv6lu63oecpe61e6698bd01s.apps.googleusercontent.com',
-    redirect_uri:`${process.env.BACKEND_ROOT}/oauth`,
+    redirect_uri: `${process.env.BACKEND_ROOT}/oauth`,
     // redirect_uri: 'http://localhost:3000/oauth',
     scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
     state: 'path-through value',
@@ -142,16 +142,16 @@ function google() {
 
 function handleSubmit(e) {
   e.preventDefault();
-  if(e.target.password.value !== e.target.password2.value){
+  if (e.target.password.value !== e.target.password2.value) {
     alert('Passwords do not match');
     return;
     // throw new Error("Passwords do not match");
   }
   let formData = {
-    email:e.target.email.value,
-    userName:e.target.userName.value,
-    password:e.target.password.value,
-    address:e.target.address.value,
+    email: e.target.email.value,
+    userName: e.target.userName.value,
+    password: e.target.password.value,
+    address: e.target.address.value,
   }
   console.log(formData);
   // props.signup(formData);
@@ -164,7 +164,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   doSignup: (userDetails) => dispatch(createUser(userDetails)),
-  
+
 })
 
 
@@ -172,6 +172,6 @@ const mapDispatchToProps = (dispatch) => ({
 Signup = connect(mapStateToProps, mapDispatchToProps)(Signup);
 
 
-export default withRouter(reduxForm({form: 'Signup',validate})(Signup));
+export default withRouter(reduxForm({ form: 'Signup', validate })(Signup));
 
 // export default reduxForm({form: 'Signup',validate})(Signup);

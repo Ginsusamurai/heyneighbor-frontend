@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleMobileNavVisibility } from '../../reducers/Layout';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+require('dotenv').config();
 
 const Header = ({
   showMobileMenu,
@@ -37,15 +39,10 @@ const Header = ({
           </FormGroup>
         </Navbar.Form>
         <Nav pullRight>
-          <NavItem>Account</NavItem>
-          <NavDropdown title="Dropdown" id="right-nav-bar">
-            <MenuItem>Action</MenuItem>
-            <MenuItem>Another action</MenuItem>
-            <MenuItem>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem>Separated link</MenuItem>
+          <NavItem><Link to="/signup">Signup</Link></NavItem>
+          <NavDropdown title="Login" id="right-nav-bar">
+            <MenuItem><Link to="/login">Login</Link></MenuItem>
           </NavDropdown>
-          <NavItem>Log out</NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

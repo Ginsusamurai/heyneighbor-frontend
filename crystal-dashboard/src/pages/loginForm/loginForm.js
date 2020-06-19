@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, saveToken } from '../../reducers/user';
 import { Field, reduxForm } from 'redux-form';
@@ -26,6 +26,9 @@ let LoginForm = props => {
         props.getUser(result.text);
         cookie.save('token', result.text);
         cookie.save('_id', 'hello');
+        setTimeout(() => {
+          document.querySelectorAll("#interesting a")[0].click();
+        }, 2000)
       })
   }
 
