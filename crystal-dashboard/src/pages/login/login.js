@@ -16,6 +16,11 @@ const Login = props => {
 
   useEffect(() => { props.saveTheToken(cookie.load('token')) }, []);
   useEffect(() => { props.getUser(cookie.load('token')) }, []);
+  
+  useEffect(() => { setTimeout(() => {document.querySelectorAll("#interesting a")[0].click();
+  },500)});
+    
+
 
   return (
 
