@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllItemsAPI } from '../../reducers/item.js';
 import { rentalCreate } from '../../reducers/rental.js';
+import { Link } from 'react-router-dom';
 
 let Others = props => {
   // getting all items
@@ -25,10 +26,13 @@ let Others = props => {
                         <div key={item._id}>
                           <h3>{item.item}</h3>
                           <img src={item.image} alt="tool" />
-                          <p>{item.type}<button 
+                          <p>{item.type}
+                          <Link to="/rentals/borrowed"><button 
                           visibility={item._custodyId === item._owner ? 'visible' : 'hidden'} 
                           className="btn btn-fill btn-primary btn-sm btn-marg-l"
-                          onClick={() => props.createRental(props.signup.token, props.user._id, item._owner, item._id)}>Request Borrow</button></p>
+                          onClick={() => props.createRental(props.signup.token, props.user._id, item._owner, item._id)}>Request Borrow</button>
+                          </Link>
+                          </p>
                         </div>
                       )
                     }
