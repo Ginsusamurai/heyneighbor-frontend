@@ -12,10 +12,10 @@ class Nav extends Component {
     return (
       <ul className="nav">
         <li className={location.pathname === '/' ? 'active' : null}>
-          <Link to="/">
+          {/* <Link to="/">
             <i className="pe-7s-graph"></i>
-            <p>Dashboard</p>
-          </Link>
+            {/* <p>Dashboard</p> */}
+           
         </li>
         <li className={this.isPathActive('/items') || this.state.itemMenuOpen ? 'active' : null}>
           <a onClick={() => this.setState({ itemMenuOpen: !this.state.itemMenuOpen })}

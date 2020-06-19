@@ -7,6 +7,7 @@ import Nav from './Nav';
 import backgroundImage from 'assets/images/sidebar-5.jpg';
 import backgroundImage2 from '../../assets/images/HeyNeighbor.PNG';
 
+
 class SideBar extends Component {
 
   state = {};
@@ -23,6 +24,7 @@ class SideBar extends Component {
       <div className="sidebar" data-color={backgroundColor} data-image={backgroundImage}>
 
         <div className="brand">
+
           <a href="http://jslancer.com" className="brand-name">
             <img src={backgroundImage2} alt="logo" className="logo" />
           </a>
