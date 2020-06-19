@@ -54,7 +54,7 @@ let LoginForm = props => {
               component={renderField} />
           </div>
 
-          <button type="submit" className="btn btn-fill btn-info" disabled={submitting}>Log in</button>
+          <button type="submit" className="btn btn-social btn-fill btn-google" disabled={submitting}>Log in</button>
         </form>
       </div>
     </div>
